@@ -1,14 +1,14 @@
 """
 ObsLogwidget is a Qt4 Widget for displaying the night log for the night
 """
-from PyQt5 import QtGui, QtCore
+from PyQt5 import QtWidgets, QtCore
 
 #headerList= ["Name", "UTC-OBS", "OBJECT", "PROPOSAL", "EXPTIME", "CCDSUM", "GAINSET", "ROSPEED", "OBSMODE", "DETMODE", "FILTER", "GRATING", "GR-ANGLE", "AR-ANGLE", "FOCUS", "MASKTYPE"]
 headerList= ["Name", "TIME-OBS", "OBJECT", "PROPID", "EXPTIME", "CCDSUM", "GAINSET", "ROSPEED", "OBSMODE", "DETMODE", "CCDTYPE", "FILTER", "GRATING", "GR-ANGLE", "AR-ANGLE", "MASKID", "LAMPID", "FOCUS", "TELAZ", "TELALT", "SEEING", "NSOURCES", "BMEAN", "BMIDPT", "BSTD"]
 printList=["Name", "OBJECT", "PROPID", "EXPTIME", "CCDSUM", "GAINSET", "ROSPEED", "OBSMODE", "DETMODE", "CCDTYPE", "FILTER"]
 
 
-class ObsLogWidget(QtGui.QWidget):
+class ObsLogWidget(QtWidgets.QWidget):
 
 
    def __init__(self, obsdict=None, minrow=5, obsdate=None, parent=None):
@@ -19,7 +19,7 @@ class ObsLogWidget(QtGui.QWidget):
         self.set_obsdict(obsdict)
 
         #Add a widget table
-        self.obstable=QtGui.QTableWidget()
+        self.obstable=QtWidgets.QTableWidget()
         self.obstable.setRowCount(self.nrow)
         self.obstable.setColumnCount(len(headerList))
         self.obstable.setHorizontalHeaderLabels(headerList)
@@ -41,17 +41,17 @@ class ObsLogWidget(QtGui.QWidget):
    
 
         #add a print button
-        self.printButton = QtGui.QPushButton("Print")
+        self.printButton = QtWidgets.QPushButton("Print")
         self.printButton.clicked.connect(self.printfornightlog)
 	self.printButton.clicked.connect(self.printobslog)
 
         #add a calibration button
-        self.calsButton = QtGui.QPushButton("Calibrations")
+        self.calsButton = QtWidgets.QPushButton("Calibrations")
         self.calsButton.clicked.connect(self.findcals)
  
 
         # Set up the layout
-        mainLayout = QtGui.QVBoxLayout()
+        mainLayout = QtWidgets.QVBoxLayout()
         mainLayout.addWidget(self.obstable)
         mainLayout.addWidget(self.calsButton)
         mainLayout.addWidget(self.printButton)
@@ -165,7 +165,7 @@ class ObsLogWidget(QtGui.QWidget):
        """Set all the values in a row from the obsdictionary"""
        if i >= len(self.obsdict): return
        k=self.obsdict.order()[i]
-       nameItem=QtGui.QTableWidgetItem(k)
+       nameItem=QtWidgets.QTableWidgetItem(k)
        self.obstable.setItem(i, 0, nameItem)
        self.obstable.resizeColumnToContents(0)
        for j in range(1, len(self.obsdict[k])):
@@ -185,12 +185,12 @@ class ObsLogWidget(QtGui.QWidget):
    def parseItem(self, x):
        """Parse an object so it can be entered into the table"""
        if isinstance(x, str):
-           return QtGui.QTableWidgetItem(x)
+           return QtWidgets.QTableWidgetItem(x)
        elif isinstance(x, float):
-           return QtGui.QTableWidgetItem('%f' % x)
+           return QtWidgets.QTableWidgetItem('%f' % x)
        elif isinstance(x, int):
-           return QtGui.QTableWidgetItem('%i' % x)
-       return QtGui.QTableWidgetItem('')
+           return QtWidgets.QTableWidgetItem('%i' % x)
+       return QtWidgets.QTableWidgetItem('')
     
 
 

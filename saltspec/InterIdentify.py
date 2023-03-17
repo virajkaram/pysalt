@@ -38,7 +38,7 @@ from pyraf import iraf
 from pyraf.iraf import pysalt
 
 # Gui library imports
-from PyQt5 import QtGui, QtCore
+from PyQt5 import QtWidgets, QtCore
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT
 
 # Salt imports
@@ -54,7 +54,7 @@ import AutoIdentify as ai
 from spectools import SALTSpecError
 
 
-class InterIdentifyWindow(QtGui.QMainWindow):
+class InterIdentifyWindow(QtWidgets.QMainWindow):
 
     """Main application window."""
 
@@ -101,10 +101,10 @@ class InterIdentifyWindow(QtGui.QMainWindow):
         self.verbose = verbose
 
         # Setup widget
-        QtGui.QMainWindow.__init__(self)
+        QtWidgets.QMainWindow.__init__(self)
 
         # Set main widget
-        self.main = QtGui.QWidget(self)
+        self.main = QtWidgets.QWidget(self)
 
         # Set window title
         self.setWindowTitle("InterIdentify")
@@ -134,13 +134,13 @@ class InterIdentifyWindow(QtGui.QMainWindow):
         self.errPage = errWidget(self.arcdisplay, hmin=hmin, wmin=wmin)
 
         # create the tabs
-        self.tabWidget = QtGui.QTabWidget()
+        self.tabWidget = QtWidgets.QTabWidget()
         self.tabWidget.addTab(self.imagePage, 'Image')
         self.tabWidget.addTab(self.arcPage, 'Arc')
         self.tabWidget.addTab(self.errPage, 'Residual')
 
         # layout the widgets
-        mainLayout = QtGui.QVBoxLayout(self.main)
+        mainLayout = QtWidgets.QVBoxLayout(self.main)
         mainLayout.addWidget(self.tabWidget)
         # self.setLayout(mainLayout)
 
@@ -279,7 +279,7 @@ class InterIdentifyWindow(QtGui.QMainWindow):
             oneline=False)
 
 
-class imageWidget(QtGui.QWidget):
+class imageWidget(QtWidgets.QWidget):
 
     def __init__(self, imarr, y1=None, y2=None, nrows=1, rstep=100, hmin=150, wmin=400,
                  name=None, cmap='Gray', scale='zscale', contrast=0.1, log=None, parent=None):
@@ -316,40 +316,40 @@ class imageWidget(QtGui.QWidget):
         self.toolbar = NavigationToolbar2QT(self.imdisplay, self)
 
         # set up the information panel
-        self.infopanel = QtGui.QWidget()
+        self.infopanel = QtWidgets.QWidget()
 
         # add the name of the file
-        self.NameLabel = QtGui.QLabel("Filename:")
-        self.NameLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-        self.NameValueLabel = QtGui.QLabel("%s" % name)
+        self.NameLabel = QtWidgets.QLabel("Filename:")
+        self.NameLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+        self.NameValueLabel = QtWidgets.QLabel("%s" % name)
         self.NameValueLabel.setFrameStyle(
-            QtGui.QFrame.Panel | QtGui.QFrame.Sunken)
+            QtWidgets.QFrame.Panel | QtWidgets.QFrame.Sunken)
 
         # add the rows that are extracted
-        self.y1Label = QtGui.QLabel("Y1:")
-        self.y1Label.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-        self.y1ValueEdit = QtGui.QLineEdit("%6i" % self.y1)
-        self.y2Label = QtGui.QLabel("Y2:")
-        self.y2Label.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-        self.y2ValueEdit = QtGui.QLineEdit("%6i" % self.y2)
-        self.updateButton = QtGui.QPushButton("Update")
+        self.y1Label = QtWidgets.QLabel("Y1:")
+        self.y1Label.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+        self.y1ValueEdit = QtWidgets.QLineEdit("%6i" % self.y1)
+        self.y2Label = QtWidgets.QLabel("Y2:")
+        self.y2Label.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+        self.y2ValueEdit = QtWidgets.QLineEdit("%6i" % self.y2)
+        self.updateButton = QtWidgets.QPushButton("Update")
         self.updateButton.clicked.connect(self.updatesection)
 
         # add the update for automatically updating it
-        self.nrLabel = QtGui.QLabel("nrows:")
-        self.nrLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-        self.nrValueEdit = QtGui.QLineEdit("%5i" % self.nrows)
-        self.nsLabel = QtGui.QLabel("rstep:")
-        self.nsLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-        self.nsValueEdit = QtGui.QLineEdit("%6i" % self.rstep)
-        self.nextButton = QtGui.QPushButton("Next")
+        self.nrLabel = QtWidgets.QLabel("nrows:")
+        self.nrLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+        self.nrValueEdit = QtWidgets.QLineEdit("%5i" % self.nrows)
+        self.nsLabel = QtWidgets.QLabel("rstep:")
+        self.nsLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+        self.nsValueEdit = QtWidgets.QLineEdit("%6i" % self.rstep)
+        self.nextButton = QtWidgets.QPushButton("Next")
         self.nextButton.clicked.connect(self.nextsection)
 
-        self.autoButton = QtGui.QPushButton("Auto-Identify")
+        self.autoButton = QtWidgets.QPushButton("Auto-Identify")
         self.autoButton.clicked.connect(self.runauto)
 
         # set up the info panel layout
-        infoLayout = QtGui.QGridLayout(self.infopanel)
+        infoLayout = QtWidgets.QGridLayout(self.infopanel)
         infoLayout.addWidget(self.NameLabel, 0, 0, 1, 1)
         infoLayout.addWidget(self.NameValueLabel, 0, 1, 1, 5)
         infoLayout.addWidget(self.y1Label, 1, 0, 1, 1)
@@ -365,7 +365,7 @@ class imageWidget(QtGui.QWidget):
         infoLayout.addWidget(self.autoButton, 3, 0, 1, 1)
 
         # Set up the layout
-        mainLayout = QtGui.QVBoxLayout()
+        mainLayout = QtWidgets.QVBoxLayout()
         mainLayout.addWidget(self.imdisplay)
         mainLayout.addWidget(self.toolbar)
         mainLayout.addWidget(self.infopanel)
@@ -404,7 +404,7 @@ class imageWidget(QtGui.QWidget):
             self.rstep)
 
 
-class arcWidget(QtGui.QWidget):
+class arcWidget(QtWidgets.QWidget):
 
     def __init__(self, arcdisplay, hmin=150, wmin=450, name=None,
                  x1=0, w1=0, y1=None, y2=None, parent=None):
@@ -420,74 +420,74 @@ class arcWidget(QtGui.QWidget):
         self.toolbar = NavigationToolbar2QT(self.arcdisplay.arcfigure, self)
 
         # set up the information panel
-        self.infopanel = QtGui.QWidget()
+        self.infopanel = QtWidgets.QWidget()
 
         # add the name of the file
-        self.NameLabel = QtGui.QLabel("Filename:")
-        self.NameLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-        self.NameValueLabel = QtGui.QLabel("%s" % name)
+        self.NameLabel = QtWidgets.QLabel("Filename:")
+        self.NameLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+        self.NameValueLabel = QtWidgets.QLabel("%s" % name)
         self.NameValueLabel.setFrameStyle(
-            QtGui.QFrame.Panel | QtGui.QFrame.Sunken)
+            QtWidgets.QFrame.Panel | QtWidgets.QFrame.Sunken)
 
         # add the rows that are extracted
-        self.y1Label = QtGui.QLabel("Y1:")
-        self.y1Label.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-        self.y1ValueLabel = QtGui.QLabel("%6i" % y1)
+        self.y1Label = QtWidgets.QLabel("Y1:")
+        self.y1Label.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+        self.y1ValueLabel = QtWidgets.QLabel("%6i" % y1)
         self.y1ValueLabel.setFrameStyle(
-            QtGui.QFrame.Panel | QtGui.QFrame.Sunken)
-        self.y2Label = QtGui.QLabel("Y2:")
-        self.y2Label.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-        self.y2ValueLabel = QtGui.QLabel("%6i" % y2)
+            QtWidgets.QFrame.Panel | QtWidgets.QFrame.Sunken)
+        self.y2Label = QtWidgets.QLabel("Y2:")
+        self.y2Label.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+        self.y2ValueLabel = QtWidgets.QLabel("%6i" % y2)
         self.y2ValueLabel.setFrameStyle(
-            QtGui.QFrame.Panel | QtGui.QFrame.Sunken)
+            QtWidgets.QFrame.Panel | QtWidgets.QFrame.Sunken)
 
         # add in what the value is for a x and w position
-        self.x1Label = QtGui.QLabel("X1:")
-        self.x1Label.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-        self.w1Label = QtGui.QLabel("w1:")
-        self.w1Label.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-        self.x1ValueLabel = QtGui.QLabel("%6.2f" % x1)
+        self.x1Label = QtWidgets.QLabel("X1:")
+        self.x1Label.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+        self.w1Label = QtWidgets.QLabel("w1:")
+        self.w1Label.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+        self.x1ValueLabel = QtWidgets.QLabel("%6.2f" % x1)
         self.x1ValueLabel.setFrameStyle(
-            QtGui.QFrame.Panel | QtGui.QFrame.Sunken)
+            QtWidgets.QFrame.Panel | QtWidgets.QFrame.Sunken)
         w1 = self.arcdisplay.ws.value(x1)
-        self.w1ValueEdit = QtGui.QLineEdit("%6i" % w1)
-        self.addButton = QtGui.QPushButton("Add")
+        self.w1ValueEdit = QtWidgets.QLineEdit("%6i" % w1)
+        self.addButton = QtWidgets.QPushButton("Add")
         self.addButton.clicked.connect(self.addpoints)
 
         # add in radio buttons for pixel or wavelength
-        self.pixelradio = QtGui.QRadioButton("Pixel")
-        self.wavelengthradio = QtGui.QRadioButton("Wavelength")
+        self.pixelradio = QtWidgets.QRadioButton("Pixel")
+        self.wavelengthradio = QtWidgets.QRadioButton("Wavelength")
         self.pixelradio.setChecked(True)
 
         # add in information about the order and type of solution
-        self.funcLabel = QtGui.QLabel("Function:")
-        self.funcLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-        self.funcComboBox = QtGui.QComboBox()
+        self.funcLabel = QtWidgets.QLabel("Function:")
+        self.funcLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+        self.funcComboBox = QtWidgets.QComboBox()
         self.funcComboBox.addItems(self.arcdisplay.ws.func_options)
         self.funcComboBox.setCurrentIndex(
             self.arcdisplay.ws.func_options.index(
                 self.arcdisplay.ws.function))
         # self.funcComboBox."%s" % self.arcdisplay.ws.function)
-        self.orderLabel = QtGui.QLabel("Order:")
-        self.orderLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-        self.orderValueEdit = QtGui.QLineEdit("%2i" % self.arcdisplay.ws.order)
-        self.updateButton = QtGui.QPushButton("Update")
+        self.orderLabel = QtWidgets.QLabel("Order:")
+        self.orderLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+        self.orderValueEdit = QtWidgets.QLineEdit("%2i" % self.arcdisplay.ws.order)
+        self.updateButton = QtWidgets.QPushButton("Update")
         self.updateButton.clicked.connect(self.updatefunction)
 
         # provide a method for automatically fitting the line
-        self.methodComboBox = QtGui.QComboBox()
+        self.methodComboBox = QtWidgets.QComboBox()
         self.methodComboBox.addItems(ai.autoidentify_options)
         self.methodComboBox.setCurrentIndex(
             ai.autoidentify_options.index(
                 self.arcdisplay.method))
-        self.runButton = QtGui.QPushButton("Run")
+        self.runButton = QtWidgets.QPushButton("Run")
         self.runButton.clicked.connect(self.runauto)
 
-        self.saveButton = QtGui.QPushButton("Save")
+        self.saveButton = QtWidgets.QPushButton("Save")
         self.saveButton.clicked.connect(self.savews)
 
         # provide the full layout of the information panel
-        infoLayout = QtGui.QGridLayout(self.infopanel)
+        infoLayout = QtWidgets.QGridLayout(self.infopanel)
         infoLayout.addWidget(self.NameLabel, 0, 0, 1, 1)
         infoLayout.addWidget(self.NameValueLabel, 0, 1, 1, 5)
         infoLayout.addWidget(self.y1Label, 1, 0, 1, 1)
@@ -511,7 +511,7 @@ class arcWidget(QtGui.QWidget):
         # infoLayout.addWidget(self.wavelengthradio, 3, 2, 1, 2)
 
         # Set up the layout
-        mainLayout = QtGui.QVBoxLayout()
+        mainLayout = QtWidgets.QVBoxLayout()
         mainLayout.addWidget(self.arcdisplay.arcfigure)
         mainLayout.addWidget(self.toolbar)
         mainLayout.addWidget(self.infopanel)
@@ -575,7 +575,7 @@ class arcWidget(QtGui.QWidget):
         self.emit(QtCore.SIGNAL("savews()"))
 
 
-class errWidget(QtGui.QWidget):
+class errWidget(QtWidgets.QWidget):
 
     def __init__(self, arcdisplay, hmin=150, wmin=450, name=None, parent=None):
         super(errWidget, self).__init__(parent)
@@ -590,41 +590,41 @@ class errWidget(QtGui.QWidget):
         self.toolbar = NavigationToolbar2QT(self.arcdisplay.errfigure, self)
 
         # set up the information panel
-        self.infopanel = QtGui.QWidget()
+        self.infopanel = QtWidgets.QWidget()
 
         # add the name of the file
-        self.NameLabel = QtGui.QLabel("Filename:")
-        self.NameLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-        self.NameValueLabel = QtGui.QLabel("%s" % name)
+        self.NameLabel = QtWidgets.QLabel("Filename:")
+        self.NameLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+        self.NameValueLabel = QtWidgets.QLabel("%s" % name)
         self.NameValueLabel.setFrameStyle(
-            QtGui.QFrame.Panel | QtGui.QFrame.Sunken)
+            QtWidgets.QFrame.Panel | QtWidgets.QFrame.Sunken)
 
         # add in the rejection parameters
-        self.sigmaLabel = QtGui.QLabel("Sigma:")
-        self.sigmaLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-        self.sigmaValueEdit = QtGui.QLineEdit(
+        self.sigmaLabel = QtWidgets.QLabel("Sigma:")
+        self.sigmaLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+        self.sigmaValueEdit = QtWidgets.QLineEdit(
             "%2.1f" %
             self.arcdisplay.ws.thresh)
-        self.niterLabel = QtGui.QLabel("Niter:")
-        self.niterLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-        self.niterValueEdit = QtGui.QLineEdit("%i" % self.arcdisplay.ws.niter)
-        self.rejectButton = QtGui.QPushButton("Reject")
+        self.niterLabel = QtWidgets.QLabel("Niter:")
+        self.niterLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+        self.niterValueEdit = QtWidgets.QLineEdit("%i" % self.arcdisplay.ws.niter)
+        self.rejectButton = QtWidgets.QPushButton("Reject")
         self.rejectButton.clicked.connect(self.rejectpoints)
 
         # add the labels for the results
-        self.aveLabel = QtGui.QLabel("Average:")
-        self.aveLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-        self.aveValueLabel = QtGui.QLabel("")
+        self.aveLabel = QtWidgets.QLabel("Average:")
+        self.aveLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+        self.aveValueLabel = QtWidgets.QLabel("")
         self.aveValueLabel.setFrameStyle(
-            QtGui.QFrame.Panel | QtGui.QFrame.Sunken)
-        self.stdLabel = QtGui.QLabel("Std(A):")
-        self.stdLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-        self.stdValueLabel = QtGui.QLabel("")
+            QtWidgets.QFrame.Panel | QtWidgets.QFrame.Sunken)
+        self.stdLabel = QtWidgets.QLabel("Std(A):")
+        self.stdLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+        self.stdValueLabel = QtWidgets.QLabel("")
         self.stdValueLabel.setFrameStyle(
-            QtGui.QFrame.Panel | QtGui.QFrame.Sunken)
+            QtWidgets.QFrame.Panel | QtWidgets.QFrame.Sunken)
 
         # provide the full layout of the information panel
-        infoLayout = QtGui.QGridLayout(self.infopanel)
+        infoLayout = QtWidgets.QGridLayout(self.infopanel)
         infoLayout.addWidget(self.NameLabel, 0, 0, 1, 1)
         infoLayout.addWidget(self.NameValueLabel, 0, 1, 1, 5)
         infoLayout.addWidget(self.aveLabel, 1, 0)
@@ -638,7 +638,7 @@ class errWidget(QtGui.QWidget):
         infoLayout.addWidget(self.rejectButton, 2, 4)
 
         # Set up the layout
-        mainLayout = QtGui.QVBoxLayout()
+        mainLayout = QtWidgets.QVBoxLayout()
         mainLayout.addWidget(self.arcdisplay.errfigure)
         mainLayout.addWidget(self.toolbar)
         mainLayout.addWidget(self.infopanel)
@@ -671,7 +671,7 @@ class errWidget(QtGui.QWidget):
         self.arcdisplay.findfit()
 
 
-class ArcDisplay(QtGui.QWidget):
+class ArcDisplay(QtWidgets.QWidget):
 
     """Class for displaying Arc Spectra using matplotlib and embedded in a Qt 4 GUI.
     """
@@ -680,7 +680,7 @@ class ArcDisplay(QtGui.QWidget):
                  res=2.0, dres=0.1, dc=20, ndstep=20, sigma=5, smooth=0, niter=5, method='MatchZero',
                  textcolor='green', preprocess=False, log=None, verbose=True):
         """Default constructor."""
-        QtGui.QWidget.__init__(self)
+        QtWidgets.QWidget.__init__(self)
 
         # Initialize base class
         self.arcfigure = MplCanvas()
@@ -1235,9 +1235,9 @@ def InterIdentify(xarr, specarr, slines, sfluxes, ws, mdiff=20, rstep=1, filenam
 
     # Create GUI
     global App
-    App = QtGui.QApplication.instance()
+    App = QtWidgets.QApplication.instance()
     if App is None:
-        App = QtGui.QApplication(sys.argv)
+        App = QtWidgets.QApplication(sys.argv)
     aw = InterIdentifyWindow(xarr, specarr, slines, sfluxes, ws, rstep=rstep, mdiff=mdiff, sigma=sigma, niter=niter,
                              res=res, dres=dres, dc=dc, ndstep=ndstep, istart=istart, method=method, smooth=smooth,subback=subback,
                              cmap=cmap, scale=scale, contrast=contrast, filename=filename, textcolor=textcolor, preprocess=preprocess, 

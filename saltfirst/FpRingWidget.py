@@ -1,6 +1,6 @@
 import numpy as np
 import os, errno
-from PyQt5 import QtGui,QtCore
+from PyQt5 import QtWidgets,QtCore
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QTAgg
 from pyraf import iraf
@@ -14,7 +14,7 @@ from saltfpprep import saltfpprep
 from saltfpmask import saltfpmask
 #from fptools import findrings, findcenter
 
-class FpRingWidget (QtGui.QWidget):
+class FpRingWidget (QtWidgets.QWidget):
 
     def __init__(self,filenumber,flatnumber,parent=None):
         super(FpRingWidget,self).__init__(parent)
@@ -38,41 +38,41 @@ class FpRingWidget (QtGui.QWidget):
 #        self.redraw_canvas()
 
        #set up the information panel
-        self.infopanel=QtGui.QWidget()
+        self.infopanel=QtWidgets.QWidget()
 
         # add a label:
-        self.NameLabel = QtGui.QLabel("File number:")
+        self.NameLabel = QtWidgets.QLabel("File number:")
 
        #add the name of the file
-        self.NameValueLabel = QtGui.QLineEdit(str(self.filenumber))
+        self.NameValueLabel = QtWidgets.QLineEdit(str(self.filenumber))
 
         # and a button to process the new ring
-        self.ringButton = QtGui.QPushButton('Load new ring')
+        self.ringButton = QtWidgets.QPushButton('Load new ring')
         self.ringButton.clicked.connect(self.redrawRing)
 
         # add a label for the flat field:
-        self.flatLabel = QtGui.QLabel("Flat file number:")
+        self.flatLabel = QtWidgets.QLabel("Flat file number:")
 
        #add the name of the file
-        self.flatValueLabel = QtGui.QLineEdit(str(self.flatnumber))
+        self.flatValueLabel = QtWidgets.QLineEdit(str(self.flatnumber))
 
 
        #set up info panel layout
 
-        infoLayout=QtGui.QGridLayout(self.infopanel)
+        infoLayout=QtWidgets.QGridLayout(self.infopanel)
         infoLayout.addWidget(self.NameLabel,0,0,1,1)
         infoLayout.addWidget(self.NameValueLabel,0,1,1,1)
         infoLayout.addWidget(self.ringButton,0,2,2,1)
         infoLayout.addWidget(self.flatLabel,0,3,1,1)
         infoLayout.addWidget(self.flatValueLabel,0,4,1,1)
-#        fitLayout=QtGui.QGridLayout(self.infopanel)
+#        fitLayout=QtWidgets.QGridLayout(self.infopanel)
 
 
         # add a panel to display the fit results
 
-        self.fitpanel=QtGui.QWidget()
+        self.fitpanel=QtWidgets.QWidget()
 
-        self.fitLabel = QtGui.QLabel("Fit Results:")
+        self.fitLabel = QtWidgets.QLabel("Fit Results:")
 
         fitXresult="X:" + str(self.etalon_x)
         fitYresult="Y:" + str(self.etalon_y)
@@ -85,18 +85,18 @@ class FpRingWidget (QtGui.QWidget):
 
 
         #add the text to the fit results panel
-        self.fitX = QtGui.QLabel(fitXresult)
-        self.fitY = QtGui.QLabel(fitYresult)
-        self.fitZ = QtGui.QLabel(fitZresult)
-        self.fitR = QtGui.QLabel(fitRresult)
-        self.fitAmp = QtGui.QLabel(fitAmpresult)
-        self.fitRms = QtGui.QLabel(fitRmsresult)
-        self.fitGamma = QtGui.QLabel(fitGammaresult)
-        self.fitFWHM = QtGui.QLabel(fitFWHMresult)
+        self.fitX = QtWidgets.QLabel(fitXresult)
+        self.fitY = QtWidgets.QLabel(fitYresult)
+        self.fitZ = QtWidgets.QLabel(fitZresult)
+        self.fitR = QtWidgets.QLabel(fitRresult)
+        self.fitAmp = QtWidgets.QLabel(fitAmpresult)
+        self.fitRms = QtWidgets.QLabel(fitRmsresult)
+        self.fitGamma = QtWidgets.QLabel(fitGammaresult)
+        self.fitFWHM = QtWidgets.QLabel(fitFWHMresult)
 
         # lay them out nicely...
 
-        fitLayout=QtGui.QGridLayout(self.fitpanel)
+        fitLayout=QtWidgets.QGridLayout(self.fitpanel)
         fitLayout.addWidget(self.fitLabel,0,0,1,1)
         fitLayout.addWidget(self.fitX,0,1,1,1)
         fitLayout.addWidget(self.fitY,0,2,1,1)
@@ -109,7 +109,7 @@ class FpRingWidget (QtGui.QWidget):
  
 
        # Set up the main layout
-        mainLayout = QtGui.QVBoxLayout()
+        mainLayout = QtWidgets.QVBoxLayout()
         mainLayout.addWidget(self.infopanel)
         mainLayout.addWidget(self.ringplot)
         mainLayout.addWidget(self.fitpanel)

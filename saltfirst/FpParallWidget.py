@@ -1,11 +1,11 @@
 import numpy as np
 import os, errno
-from PyQt5 import QtGui,QtCore
+from PyQt5 import QtWidgets,QtCore
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QTAgg
 from saltgui import MplCanvas
 
-class FpParallWidget (QtGui.QWidget):
+class FpParallWidget (QtWidgets.QWidget):
 
     def __init__(self,parent=None):
         super(FpParallWidget,self).__init__(parent)
@@ -15,23 +15,23 @@ class FpParallWidget (QtGui.QWidget):
 
 
        #set up the file range panel
-        self.rangepanel=QtGui.QWidget()
+        self.rangepanel=QtWidgets.QWidget()
 
         # add a label:
-        self.FromLabel = QtGui.QLabel("From file number:")
-        self.ToLabel = QtGui.QLabel("To file number:")
+        self.FromLabel = QtWidgets.QLabel("From file number:")
+        self.ToLabel = QtWidgets.QLabel("To file number:")
 
        #add the name of the file
-        self.FromValueLabel = QtGui.QLineEdit(str(min(self.outparams[:,0])))
-        self.ToValueLabel = QtGui.QLineEdit(str(max(self.outparams[:,0])))
+        self.FromValueLabel = QtWidgets.QLineEdit(str(min(self.outparams[:,0])))
+        self.ToValueLabel = QtWidgets.QLineEdit(str(max(self.outparams[:,0])))
 
         # and a button to process the new range
-        self.refreshButton = QtGui.QPushButton('Refresh')
+        self.refreshButton = QtWidgets.QPushButton('Refresh')
         self.refreshButton.clicked.connect(self.plotOutparams)
 
        #set up file range panel layout
 
-        rangeLayout=QtGui.QGridLayout(self.rangepanel)
+        rangeLayout=QtWidgets.QGridLayout(self.rangepanel)
         rangeLayout.addWidget(self.FromLabel,0,0,1,1)
         rangeLayout.addWidget(self.FromValueLabel,0,1,1,1)
         rangeLayout.addWidget(self.refreshButton,0,2,2,1)
@@ -42,12 +42,12 @@ class FpParallWidget (QtGui.QWidget):
         #add the radio buttons for the choice of x axis...
 
 
-        self.radioFilenumber= QtGui.QRadioButton("Plot vs Filenumber")
-        self.radioX= QtGui.QRadioButton("Plot vs etalon X")
-        self.radioY= QtGui.QRadioButton("Plot vs etalon Y")
+        self.radioFilenumber= QtWidgets.QRadioButton("Plot vs Filenumber")
+        self.radioX= QtWidgets.QRadioButton("Plot vs etalon X")
+        self.radioY= QtWidgets.QRadioButton("Plot vs etalon Y")
 
         #create a gropu for them:
-        self.radioGroupX=QtGui.QButtonGroup()
+        self.radioGroupX=QtWidgets.QButtonGroup()
         self.radioGroupX.addButton(self.radioFilenumber)
         self.radioGroupX.addButton(self.radioX)
         self.radioGroupX.addButton(self.radioY)
@@ -57,11 +57,11 @@ class FpParallWidget (QtGui.QWidget):
 
 
         #create radio buttons for the choice of y axis:
-        self.radioFWHM=QtGui.QRadioButton("Plots vs FWHM")
-        self.radioAmp=QtGui.QRadioButton("Plots vs Amplitude")
+        self.radioFWHM=QtWidgets.QRadioButton("Plots vs FWHM")
+        self.radioAmp=QtWidgets.QRadioButton("Plots vs Amplitude")
         
         #add a group for the y axis:
-        self.radioGroupY=QtGui.QButtonGroup()
+        self.radioGroupY=QtWidgets.QButtonGroup()
         self.radioGroupY.addButton(self.radioFWHM)
         self.radioGroupY.addButton(self.radioAmp)
 
@@ -71,9 +71,9 @@ class FpParallWidget (QtGui.QWidget):
 
         # display best fit in range:
 
-        self.fitpanel=QtGui.QWidget()
+        self.fitpanel=QtWidgets.QWidget()
 
-        self.fitLabel = QtGui.QLabel("Lowest FWHM in file range:")
+        self.fitLabel = QtWidgets.QLabel("Lowest FWHM in file range:")
         self.cleanOutparams()
         self.getBestparams()
 
@@ -90,19 +90,19 @@ class FpParallWidget (QtGui.QWidget):
 
         #add the text to the fit results panel
                                     
-        self.fitFile = QtGui.QLabel(fitFileresult)
-        self.fitX = QtGui.QLabel(fitXresult)
-        self.fitY = QtGui.QLabel(fitYresult)
-        self.fitZ = QtGui.QLabel(fitZresult)
-        self.fitR = QtGui.QLabel(fitRresult)
-        self.fitAmp = QtGui.QLabel(fitAmpresult)
-        self.fitRms = QtGui.QLabel(fitRmsresult)
-        self.fitGamma = QtGui.QLabel(fitGammaresult)
-        self.fitFWHM = QtGui.QLabel(fitFWHMresult)
+        self.fitFile = QtWidgets.QLabel(fitFileresult)
+        self.fitX = QtWidgets.QLabel(fitXresult)
+        self.fitY = QtWidgets.QLabel(fitYresult)
+        self.fitZ = QtWidgets.QLabel(fitZresult)
+        self.fitR = QtWidgets.QLabel(fitRresult)
+        self.fitAmp = QtWidgets.QLabel(fitAmpresult)
+        self.fitRms = QtWidgets.QLabel(fitRmsresult)
+        self.fitGamma = QtWidgets.QLabel(fitGammaresult)
+        self.fitFWHM = QtWidgets.QLabel(fitFWHMresult)
 
         # lay them out nicely...
 
-        fitLayout=QtGui.QGridLayout(self.fitpanel)
+        fitLayout=QtWidgets.QGridLayout(self.fitpanel)
         fitLayout.addWidget(self.fitLabel,0,0,1,4)
         fitLayout.addWidget(self.fitFile,3,0,1,1)
         fitLayout.addWidget(self.fitX,3,1,1,1)
@@ -139,23 +139,23 @@ class FpParallWidget (QtGui.QWidget):
 
         #Add the X radio buttons to a horizontal layout
         
-        self.radiopanel= QtGui.QWidget()
+        self.radiopanel= QtWidgets.QWidget()
 
-        radioLayout=QtGui.QHBoxLayout(self.radiopanel)
+        radioLayout=QtWidgets.QHBoxLayout(self.radiopanel)
         radioLayout.addWidget(self.radioFilenumber)
         radioLayout.addWidget(self.radioX)
         radioLayout.addWidget(self.radioY)
 
         #Add the Y radio buttons to a vertical layout
 
-        self.radioYpanel=QtGui.QWidget()
+        self.radioYpanel=QtWidgets.QWidget()
         
-        radioYLayout=QtGui.QVBoxLayout(self.radioYpanel)
+        radioYLayout=QtWidgets.QVBoxLayout(self.radioYpanel)
         radioYLayout.addWidget(self.radioFWHM)
         radioYLayout.addWidget(self.radioAmp)
 
        # Set up the main layout
-        mainLayout = QtGui.QGridLayout()
+        mainLayout = QtWidgets.QGridLayout()
         mainLayout.addWidget(self.rangepanel,0,0,1,9)
         mainLayout.addWidget(self.fitpanel,1,0,1,9)
         mainLayout.addWidget(self.fwhmplot,2,0,1,4)
@@ -256,7 +256,7 @@ class FpParallWidget (QtGui.QWidget):
         text="FileNumber: %i, \nX: %i, \nY: %i, \nZ:%i, \nAmp: %.2f, \nRMS: %.2f, \nGamma: %.2f, \nFWHM: %.3f" % (int(datapoint[0]), int(datapoint[1]),int(datapoint[2]),int(datapoint[3]),datapoint[5],datapoint[6],datapoint[7],datapoint[8])
 
         #and plonk it on! :)
-        QtGui.QToolTip.showText(QtCore.QPoint(338,314),text)
+        QtWidgets.QToolTip.showText(QtCore.QPoint(338,314),text)
 
         return
 

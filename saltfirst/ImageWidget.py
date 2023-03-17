@@ -2,12 +2,12 @@
 imageWidget is a Qt4 Widget for displaying an image in the frame
 """
 import os
-from PyQt5 import QtGui, QtCore
+from PyQt5 import QtWidgets, QtCore
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QTAgg
 from saltgui import ImageDisplay, MplCanvas
 
 
-class ImageWidget(QtGui.QWidget):
+class ImageWidget(QtWidgets.QWidget):
    def __init__(self, hdu,  hmin=150, wmin=400, cmap='gray', scale='zscale', contrast=0.1, parent=None):
         super(imageWidget, self).__init__(parent)
 
@@ -32,22 +32,22 @@ class ImageWidget(QtGui.QWidget):
         self.toolbar=NavigationToolbar2QTAgg(self.imdisplay,self)
 
         #set up the information panel
-        self.infopanel=QtGui.QWidget()
+        self.infopanel=QtWidgets.QWidget()
 
         #add the name of the file
-        self.NameLabel = QtGui.QLabel("Filename:")
-        self.NameLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised )
-        self.NameValueLabel = QtGui.QLabel(self.name)
-        self.NameValueLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Sunken )
+        self.NameLabel = QtWidgets.QLabel("Filename:")
+        self.NameLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised )
+        self.NameValueLabel = QtWidgets.QLabel(self.name)
+        self.NameValueLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Sunken )
 
 
         #set up the info panel layout
-        infoLayout=QtGui.QGridLayout(self.infopanel)
+        infoLayout=QtWidgets.QGridLayout(self.infopanel)
         infoLayout.addWidget(self.NameLabel, 0, 0, 1, 1)
         infoLayout.addWidget(self.NameValueLabel, 0, 1, 1, 5)
 
         # Set up the layout
-        mainLayout = QtGui.QVBoxLayout()
+        mainLayout = QtWidgets.QVBoxLayout()
         mainLayout.addWidget(self.imdisplay)
         mainLayout.addWidget(self.toolbar)
         mainLayout.addWidget(self.infopanel)

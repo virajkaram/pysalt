@@ -43,7 +43,7 @@ import pyfits
 import numpy as np
 
 # Gui library imports
-from PyQt5 import QtGui, QtCore
+from PyQt5 import QtWidgets, QtCore
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 from matplotlib.patches import CirclePolygon, Rectangle
@@ -54,7 +54,7 @@ from salterror import SaltError, SaltIOError
 from saltimagetools import find_object, zscale
 
 
-class PhotometryConfigWidget(QtGui.QWidget):
+class PhotometryConfigWidget(QtWidgets.QWidget):
     """Configure dialog for photometry.
 
     Has settings for:
@@ -99,7 +99,7 @@ class PhotometryConfigWidget(QtGui.QWidget):
         from ui_photometryconfigwidget import Ui_PhotometryConfigWidget
 
         # Setup widget
-        QtGui.QWidget.__init__(self, parent)
+        QtWidgets.QWidget.__init__(self, parent)
 
         # Bind gui to widget
         self.ui = Ui_PhotometryConfigWidget()
@@ -191,7 +191,7 @@ class PhotometryConfigWidget(QtGui.QWidget):
                                      'y2' : False}}
 
         # Set validator to ensure valid input on lineEdit input widgets
-        self.validator = QtGui.QDoubleValidator(self)
+        self.validator = QtWidgets.QDoubleValidator(self)
 
         for object in ['target','comparison']:
             for key in self.parameters:

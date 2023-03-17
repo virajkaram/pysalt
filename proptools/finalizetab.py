@@ -22,10 +22,10 @@ class ValidatorError(Exception):
 
     def __init__(self, ui, errmesg):
         self.ui = ui
-        palette = QtGui.QPalette()
-        brush = QtGui.QBrush(QtGui.QColor(225, 0, 0))
+        palette = QtWidgets.QPalette()
+        brush = QtWidgets.QBrush(QtWidgets.QColor(225, 0, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Text, brush)
+        palette.setBrush(QtWidgets.QPalette.Active, QtWidgets.QPalette.Text, brush)
         self.ui.textEditFin_ErrorMessages.setPalette(palette)
         self.ui.textEditFin_ErrorMessages.setText(errmesg)
     pass
@@ -43,10 +43,10 @@ class FinalizeTab:
         
 
     def validation_success(self, msg=''):
-        palette = QtGui.QPalette()
-        brush = QtGui.QBrush(QtGui.QColor(0, 170, 0))
+        palette = QtWidgets.QPalette()
+        brush = QtWidgets.QBrush(QtWidgets.QColor(0, 170, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Text, brush)
+        palette.setBrush(QtWidgets.QPalette.Active, QtWidgets.QPalette.Text, brush)
         self.ui.textEditFin_ErrorMessages.setPalette(palette)
         valmesg = msg + '\n ** Validation was successful! **\n'
         self.ui.textEditFin_ErrorMessages.setText(valmesg)
@@ -161,7 +161,7 @@ class FinalizeTab:
             raise ValidatorError(self.ui,errmsg)
 
         ldir = os.getcwd()
-        rsmtoutfilename = QtGui.QFileDialog.getSaveFileName(caption="Save RSMT File", directory=ldir)
+        rsmtoutfilename = QtWidgets.QFileDialog.getSaveFileName(caption="Save RSMT File", directory=ldir)
         rsmtoutfilename = str(rsmtoutfilename).strip('.rsmt') + '.rsmt'
 
         #write the xml
@@ -187,7 +187,7 @@ class FinalizeTab:
         writes the current mask info to an user specified xml file
         '''
         ldir=os.getcwd()
-        xmloutfilename = QtGui.QFileDialog.getSaveFileName(caption="Save Current XML file", directory=ldir)
+        xmloutfilename = QtWidgets.QFileDialog.getSaveFileName(caption="Save Current XML file", directory=ldir)
         self.writexml2file(str(xmloutfilename))
 
 
@@ -224,7 +224,7 @@ class FinalizeTab:
         #determine the name of the output file
         if not outfile:
             ldir = os.getcwd()
-            outfile = str(QtGui.QFileDialog.getSaveFileName(caption="Save Finding Chart file", directory=ldir))
+            outfile = str(QtWidgets.QFileDialog.getSaveFileName(caption="Save Finding Chart file", directory=ldir))
             self.fcfile = outfile
         else:
             self.fcfile=outfile

@@ -1,7 +1,7 @@
 """
 InfoWidget is a Qt4 Widget for displaying information about an image
 """
-from PyQt5 import QtGui, QtCore, QtWidgets
+from PyQt5 import QtWidgets, QtCore, QtWidgets
 from ObsLogWidget import headerList, printList
 from PyQt5.QtWidgets import QWidget, QLabel, QGridLayout, QFrame, QVBoxLayout
 

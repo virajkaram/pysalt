@@ -69,7 +69,7 @@ debug=True
 def masktool(catalog='', image='', logfile='salt.log', verbose=True):
 
    with logging(logfile,debug) as log:
-       app = QtGui.QApplication([])
+       app = QtWidgets.QApplication([])
        myapp = SlitMaskGui(infile=catalog, inimage=image)
        myapp.show()
        app.exec_()

@@ -146,12 +146,12 @@ class RefTab:
     def parseItem(self, x):
        """Parse an object so it can be entered into the table"""
        if isinstance(x, str):
-           return QtGui.QTableWidgetItem(x)
+           return QtWidgets.QTableWidgetItem(x)
        elif isinstance(x, numpy.float32):
-           return QtGui.QTableWidgetItem('%f' % x)
+           return QtWidgets.QTableWidgetItem('%f' % x)
        elif isinstance(x, float):
-           return QtGui.QTableWidgetItem('%f' % x)
+           return QtWidgets.QTableWidgetItem('%f' % x)
        elif isinstance(x, int):
-           return QtGui.QTableWidgetItem('%i' % x)
-       return QtGui.QTableWidgetItem('')
+           return QtWidgets.QTableWidgetItem('%i' % x)
+       return QtWidgets.QTableWidgetItem('')
 

@@ -43,7 +43,7 @@ from pyraf import iraf
 from pyraf.iraf import pysalt
 
 # Gui library imports
-from PyQt5 import QtGui, QtCore
+from PyQt5 import QtWidgets, QtCore
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT
 
 # Salt imports
@@ -55,7 +55,7 @@ from salterror import SaltIOError
 
 debug=True
 
-class ApplicationWindow(QtGui.QMainWindow):
+class ApplicationWindow(QtWidgets.QMainWindow):
     """Main application window."""
 
     def __init__(self, imlist, number, config,
@@ -65,10 +65,10 @@ class ApplicationWindow(QtGui.QMainWindow):
         """Default constructor."""
 
         # Setup widget
-        QtGui.QMainWindow.__init__(self)
+        QtWidgets.QMainWindow.__init__(self)
 
         # Set main widget
-        self.main = QtGui.QWidget(self)
+        self.main = QtWidgets.QWidget(self)
 
         # Set window title
         self.setWindowTitle("Slotpreview")
@@ -100,7 +100,7 @@ class ApplicationWindow(QtGui.QMainWindow):
         self.conf.setLineWidth('comparison', comparison_line_width)
 
         # Layout the widgets
-        l = QtGui.QVBoxLayout(self.main)
+        l = QtWidgets.QVBoxLayout(self.main)
         l.addWidget(self.imdisplay)
         l.addWidget(self.toolbar)
         l.addWidget(self.conf)
@@ -153,7 +153,7 @@ def slotpreview(images,outfile,ampperccd=2,ignorexp=6,recenter_radius=5,
             raise SaltIOError('Could not read NCCDS parameter from header of first fits file.')
 
         # Create GUI
-        App = QtGui.QApplication(sys.argv)
+        App = QtWidgets.QApplication(sys.argv)
         aw = ApplicationWindow(imlist=imlist,
                 number=ignorexp*ampperccd*nccds+1,
                 config=outfile, target_line_color=tgt_col,

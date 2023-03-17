@@ -55,7 +55,8 @@ from pyraf import iraf
 from pyraf.iraf import pysalt
 
 # Gui library imports
-from PyQt5 import QtGui, QtCore
+
+from PyQt5 import QtWidgets, QtCore
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT
 from matplotlib.figure import Figure
 
@@ -68,7 +69,7 @@ from salterror import SaltError, SaltIOError
 #slottools
 import slottool as st
 
-class SlotViewWindow(QtGui.QMainWindow):
+class SlotViewWindow(QtWidgets.QMainWindow):
    """Main application window."""
 
    def __init__(self, struct, pid, tflux, cflux, ratio, time, phottype, sleep,  
@@ -113,16 +114,16 @@ class SlotViewWindow(QtGui.QMainWindow):
 
 
         # Setup widget
-        QtGui.QMainWindow.__init__(self)
+        QtWidgets.QMainWindow.__init__(self)
 
         # Set main widget
-        self.main = QtGui.QWidget(self)
+        self.main = QtWidgets.QWidget(self)
 
         # Set window title
         self.setWindowTitle("SlotView %s" % self.infile)
 
         #set up the different pages
-        self.slotPage=QtGui.QWidget()
+        self.slotPage=QtWidgets.QWidget()
         
         #set up the differen panels
         self.set_optionpanel()
@@ -132,7 +133,7 @@ class SlotViewWindow(QtGui.QMainWindow):
         self.set_infopanel()
 
         # Set up the layout
-        slotLayout = QtGui.QVBoxLayout(self.slotPage)
+        slotLayout = QtWidgets.QVBoxLayout(self.slotPage)
         slotLayout.addWidget(self.plotpanel)
         slotLayout.addWidget(self.optipanel)
         slotLayout.addWidget(self.imdisplay)
@@ -141,11 +142,11 @@ class SlotViewWindow(QtGui.QMainWindow):
 
 
         #create the tabs
-        #self.tabWidget=QtGui.QTabWidget()
+        #self.tabWidget=QtWidgets.QTabWidget()
         #self.tabWidget.addTab(self.slotPage, 'Slot')
  
         #layout the widgets
-        mainLayout = QtGui.QVBoxLayout(self.main)
+        mainLayout = QtWidgets.QVBoxLayout(self.main)
         mainLayout.addWidget(self.slotPage)
         #mainLayout.addWidget(self.tabWidget)
         #self.setLayout(mainLayout)
@@ -371,7 +372,7 @@ class SlotViewWindow(QtGui.QMainWindow):
 
    def set_plotpanel(self, hmin=250):
        #set up the control panel
-       self.plotpanel=QtGui.QWidget()
+       self.plotpanel=QtWidgets.QWidget()
 
        self.lccanvas=MplCanvas()
        self.plotlightcurve()
@@ -382,28 +383,28 @@ class SlotViewWindow(QtGui.QMainWindow):
        self.toolbar=NavigationToolbar2QT(self.lccanvas,self)
 
        # Set up the layout
-       plotLayout = QtGui.QVBoxLayout(self.plotpanel)
+       plotLayout = QtWidgets.QVBoxLayout(self.plotpanel)
        plotLayout.addWidget(self.lccanvas)
        plotLayout.addWidget(self.toolbar)
 
    def set_optionpanel(self):
        #set up the control panel
-       self.optipanel=QtGui.QWidget()
+       self.optipanel=QtWidgets.QWidget()
 
        #set up the options
        self.fluxplot=True
        self.tstarplot=False
        self.cstarplot=False
-       self.fluxButton = QtGui.QCheckBox("Flux Ratio")
+       self.fluxButton = QtWidgets.QCheckBox("Flux Ratio")
        self.fluxButton.setChecked(self.fluxplot)
        self.fluxButton.clicked.connect(self.changefluxplot)
-       self.tstarButton = QtGui.QCheckBox("Target")
+       self.tstarButton = QtWidgets.QCheckBox("Target")
        self.tstarButton.clicked.connect(self.changetstarplot)
-       self.cstarButton = QtGui.QCheckBox("Comparison")
+       self.cstarButton = QtWidgets.QCheckBox("Comparison")
        self.cstarButton.clicked.connect(self.changecstarplot)
 
        # Set up the layout
-       optiLayout=QtGui.QGridLayout(self.optipanel)
+       optiLayout=QtWidgets.QGridLayout(self.optipanel)
        optiLayout.addWidget(self.fluxButton, 0, 0, 1,1)
        optiLayout.addWidget(self.tstarButton, 0, 1, 1,1)
        optiLayout.addWidget(self.cstarButton, 0, 2, 1,1)
@@ -414,7 +415,7 @@ class SlotViewWindow(QtGui.QMainWindow):
        hmin=150
        wmin=400
        #set up the control panel
-       self.imagpanel=QtGui.QWidget()
+       self.imagpanel=QtWidgets.QWidget()
 
        #hmin=wmin*self.naxis2/self.naxis1
        #print self.naxis1, self.naxis2, wmin, hmin
@@ -453,7 +454,7 @@ class SlotViewWindow(QtGui.QMainWindow):
        self.imagtoolbar=NavigationToolbar2QT(self.imdisplay,self)
 
        # Set up the layout
-       imagLayout = QtGui.QVBoxLayout(self.imagpanel)
+       imagLayout = QtWidgets.QVBoxLayout(self.imagpanel)
        #imagLayout.addWidget(self.imdisplay)
        imagLayout.addWidget(MplCanvas())
        imagLayout.addWidget(self.imagtoolbar)
@@ -467,27 +468,27 @@ class SlotViewWindow(QtGui.QMainWindow):
    def set_controlpanel(self):
        """set up the Control Panel"""
        #set up the control panel
-       self.contpanel=QtGui.QWidget()
+       self.contpanel=QtWidgets.QWidget()
 
        #set up the buttons
-       self.frevButton = QtGui.QPushButton("<<")
+       self.frevButton = QtWidgets.QPushButton("<<")
        self.frevButton.clicked.connect(self.freverse)
-       self.revButton = QtGui.QPushButton("<")
+       self.revButton = QtWidgets.QPushButton("<")
        self.revButton.clicked.connect(self.reverse)
-       self.rev1Button = QtGui.QPushButton("-")
+       self.rev1Button = QtWidgets.QPushButton("-")
        self.rev1Button.clicked.connect(self.revone)
-       self.stopButton = QtGui.QPushButton("Stop")
+       self.stopButton = QtWidgets.QPushButton("Stop")
        self.stopButton.clicked.connect(self.stop)
-       self.play1Button = QtGui.QPushButton("+")
+       self.play1Button = QtWidgets.QPushButton("+")
        self.play1Button.clicked.connect(self.playone)
-       self.playButton = QtGui.QPushButton(">")
+       self.playButton = QtWidgets.QPushButton(">")
        self.playButton.clicked.connect(self.play)
-       self.fplayButton = QtGui.QPushButton(">>")
+       self.fplayButton = QtWidgets.QPushButton(">>")
        self.fplayButton.clicked.connect(self.fplay)
 
 
        #set up the info panel layout
-       contLayout=QtGui.QGridLayout(self.contpanel)
+       contLayout=QtWidgets.QGridLayout(self.contpanel)
        #contLayout.addWidget(self.frevButton, 0, 0, 1, 1)
        #contLayout.addWidget(self.revButton,  0, 1, 1, 1)
        contLayout.addWidget(self.rev1Button, 0, 2, 1, 1)
@@ -500,18 +501,18 @@ class SlotViewWindow(QtGui.QMainWindow):
        """Set up the information panel"""
 
        #set up the information panel
-       self.infopanel=QtGui.QWidget()
+       self.infopanel=QtWidgets.QWidget()
         
        #add the name of the file
-       self.IDValueLabel = QtGui.QLabel("%i" % self.pid[self.id])
-       self.IDValueLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Sunken )
-       self.NameValueLabel = QtGui.QLabel("%s" % self.name)
-       self.NameValueLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Sunken )
-       self.timeValueLabel = QtGui.QLabel("%s" % self.get_time())
-       self.timeValueLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Sunken )
+       self.IDValueLabel = QtWidgets.QLabel("%i" % self.pid[self.id])
+       self.IDValueLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Sunken )
+       self.NameValueLabel = QtWidgets.QLabel("%s" % self.name)
+       self.NameValueLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Sunken )
+       self.timeValueLabel = QtWidgets.QLabel("%s" % self.get_time())
+       self.timeValueLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Sunken )
   
        #set up the info panel layout
-       infoLayout=QtGui.QGridLayout(self.infopanel)
+       infoLayout=QtWidgets.QGridLayout(self.infopanel)
        infoLayout.addWidget(self.IDValueLabel, 0, 0, 1, 1)
        infoLayout.addWidget(self.NameValueLabel, 0, 1, 1, 1)
        infoLayout.addWidget(self.timeValueLabel, 0, 2, 1, 1)

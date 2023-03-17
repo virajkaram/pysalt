@@ -57,7 +57,7 @@ import Tkinter as Tk
 from matplotlib.widgets import Cursor, SpanSelector, Slider, CheckButtons
 
 # Gui library imports
-from PyQt5 import QtGui, QtCore
+from PyQt5 import QtWidgets, QtCore
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT
 
 # Salt imports
@@ -111,7 +111,7 @@ def slotview(newfits,indata , fileout, srcfile, fps=10.0, phottype='square', sig
 
         # Plot all of the data and the first image
         # Create GUI
-        App = QtGui.QApplication([])
+        App = QtWidgets.QApplication([])
         aw=SlotViewWindow(struct, id, tflux, cflux, ratio, time, phottype, sleep,   \
                      tx, ty, cx, cy, r, br1, br2, naxis1, naxis2, sigdet, contpix, driftlimit)
         aw.show()

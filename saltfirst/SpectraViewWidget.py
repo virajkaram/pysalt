@@ -3,13 +3,13 @@ SpectraViewWidget is a Qt4 Widget for displaying a spectra either in terms of si
 it expects to be given the wavelenght, flux, and sn arrays for the data
 """
 import numpy as np
-from PyQt5 import QtGui, QtCore
+from PyQt5 import QtWidgets, QtCore
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QTAgg
 from saltgui import MplCanvas
 from InterIdentify import ArcDisplay
 
 
-class SpectraViewWidget(QtGui.QWidget):
+class SpectraViewWidget(QtWidgets.QWidget):
    def __init__(self, warr, farr, snarr, name='', y1=1010, y2=1030, hmin=150, wmin=400, smooth=5, parent=None):
        super(SpectraViewWidget, self).__init__(parent)
 
@@ -34,37 +34,37 @@ class SpectraViewWidget(QtGui.QWidget):
        self.toolbar=NavigationToolbar2QTAgg(self.arcfigure,self)
 
        #set up the information panel
-       self.infopanel=QtGui.QWidget()
+       self.infopanel=QtWidgets.QWidget()
 
        #add the name of the file
-       self.NameLabel = QtGui.QLabel("Filename:")
-       self.NameLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised )
-       self.NameValueLabel = QtGui.QLabel(self.name)
-       self.NameValueLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Sunken )
+       self.NameLabel = QtWidgets.QLabel("Filename:")
+       self.NameLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised )
+       self.NameValueLabel = QtWidgets.QLabel(self.name)
+       self.NameValueLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Sunken )
 
        #add extraction window
 
-       self.y1Label = QtGui.QLabel("y1:")
-       self.y1Label.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised )
-       self.y1ValueLabel = QtGui.QLineEdit(str(self.y1))
-       self.y2Label = QtGui.QLabel("y2:")
-       self.y2Label.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised )
-       self.y2ValueLabel = QtGui.QLineEdit(str(self.y2))
-       self.apButton = QtGui.QPushButton('Extract')
+       self.y1Label = QtWidgets.QLabel("y1:")
+       self.y1Label.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised )
+       self.y1ValueLabel = QtWidgets.QLineEdit(str(self.y1))
+       self.y2Label = QtWidgets.QLabel("y2:")
+       self.y2Label.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised )
+       self.y2ValueLabel = QtWidgets.QLineEdit(str(self.y2))
+       self.apButton = QtWidgets.QPushButton('Extract')
        self.apButton.clicked.connect(self.extractspectra)
 
        #add default button
-       self.defaultBox = QtGui.QCheckBox('Use values as default')
+       self.defaultBox = QtWidgets.QCheckBox('Use values as default')
        self.defaultBox.stateChanged.connect(self.updatedefaults)
  
        #add smoothing
-       self.smoothLabel = QtGui.QLabel("Smooth")
-       self.smoothLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised )
-       self.smoothValueLabel = QtGui.QLineEdit(str(self.smooth))
+       self.smoothLabel = QtWidgets.QLabel("Smooth")
+       self.smoothLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised )
+       self.smoothValueLabel = QtWidgets.QLineEdit(str(self.smooth))
        self.smoothValueLabel.textChanged.connect(self.updatesmooth)
 
        #set up the info panel layout
-       infoLayout=QtGui.QGridLayout(self.infopanel)
+       infoLayout=QtWidgets.QGridLayout(self.infopanel)
        infoLayout.addWidget(self.NameLabel, 0, 0, 1, 1)
        infoLayout.addWidget(self.NameValueLabel, 0, 1, 1, 5)
        infoLayout.addWidget(self.y1Label, 1, 0, 1, 1)
@@ -77,7 +77,7 @@ class SpectraViewWidget(QtGui.QWidget):
        infoLayout.addWidget(self.smoothValueLabel, 2, 3, 1, 1)
 
        # Set up the layout
-       mainLayout = QtGui.QVBoxLayout()
+       mainLayout = QtWidgets.QVBoxLayout()
        mainLayout.addWidget(self.arcfigure)
        mainLayout.addWidget(self.toolbar)
        mainLayout.addWidget(self.infopanel)

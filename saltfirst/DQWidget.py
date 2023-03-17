@@ -5,7 +5,7 @@ of an image
 import numpy as np 
 import pyfits
 
-from PyQt5 import QtGui, QtCore
+from PyQt5 import QtWidgets, QtCore
 from ObsLogWidget import headerList, printList
 
 from saltstat import iterstat
@@ -15,26 +15,26 @@ from saltstat import iterstat
 from rssinfo import rssinfo
 from seeing import seeing_stats, airmass
 
-class DQWidget(QtGui.QWidget):
+class DQWidget(QtWidgets.QWidget):
    def __init__(self, name, imlist, parent=None):
        super(DQWidget, self).__init__(parent)
        self.imlist=imlist
        self.name=name
        #set up the information panel
-       self.infopanel=QtGui.QWidget()
+       self.infopanel=QtWidgets.QWidget()
        self.infopanel.setFixedHeight(50)
  
        #set up some needed variables
        self.obsmode=self.getitem('OBSMODE')
 
        #add the name of the file
-       self.NameLabel = QtGui.QLabel("Filename:")
-       self.NameLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised )
-       self.NameValueLabel = QtGui.QLabel("%s" % self.name)
-       self.NameValueLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Sunken )
+       self.NameLabel = QtWidgets.QLabel("Filename:")
+       self.NameLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised )
+       self.NameValueLabel = QtWidgets.QLabel("%s" % self.name)
+       self.NameValueLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Sunken )
 
        #set up the info panel layout
-       infoLayout=QtGui.QGridLayout(self.infopanel)
+       infoLayout=QtWidgets.QGridLayout(self.infopanel)
        infoLayout.addWidget(self.NameLabel, 0, 0, 1, 1)
        infoLayout.addWidget(self.NameValueLabel, 0, 1, 1, 1)
 
@@ -44,10 +44,10 @@ class DQWidget(QtGui.QWidget):
        elif self.obsmode=='SPECTROSCOPY': 
           self.datapanel=self.set_spectroscopy()
        else:
-          self.datapanel=QtGui.QWidget()
+          self.datapanel=QtWidgets.QWidget()
 
        # Set up the layout
-       mainLayout = QtGui.QVBoxLayout()
+       mainLayout = QtWidgets.QVBoxLayout()
        mainLayout.addWidget(self.infopanel)
        mainLayout.addWidget(self.datapanel)
        self.setLayout(mainLayout)
@@ -60,7 +60,7 @@ class DQWidget(QtGui.QWidget):
 
        #add the name of the file
        self.NameValueLabel.setText(("%s" % self.name))
-       self.NameValueLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Sunken )
+       self.NameValueLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Sunken )
 
        #set up the panel for the different modes
        if self.obsmode=='IMAGING':
@@ -68,7 +68,7 @@ class DQWidget(QtGui.QWidget):
        elif self.obsmode=='SPECTROSCOPY': 
           self.datapanel=self.set_spectroscopy()
        else:
-          self.datapanel=QtGui.QWidget()
+          self.datapanel=QtWidgets.QWidget()
 
        # Set up the layout
 
@@ -88,7 +88,7 @@ class DQWidget(QtGui.QWidget):
    def set_spectroscopy(self):
 
        #set up the data panel
-       datapanel=QtGui.QWidget()
+       datapanel=QtWidgets.QWidget()
 
        #get the infomration that you need about the image
        grating=self.getitem('GRATING').strip()
@@ -103,47 +103,47 @@ class DQWidget(QtGui.QWidget):
 
        #Information to include in the data panel
        #central w, w1, w2, resolution, dw
-       self.gratingLabel = QtGui.QLabel("Grating")
-       self.gratingLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-       self.graangLabel = QtGui.QLabel("GR-ANGLE")
-       self.graangLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-       self.artangLabel = QtGui.QLabel("AR-ANGLE")
-       self.artangLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-       self.slitnameLabel = QtGui.QLabel("SLIT")
-       self.slitnameLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-       self.slitsizeLabel = QtGui.QLabel("SIZE")
-       self.slitsizeLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-       self.gratingValueLabel = QtGui.QLabel(grating)
-       self.gratingValueLabel.setFrameStyle(QtGui.QFrame.Panel |  QtGui.QFrame.Sunken)
-       self.graangValueLabel = QtGui.QLabel(u"%5.3f \u00B0" % graang)
-       self.graangValueLabel.setFrameStyle(QtGui.QFrame.Panel |  QtGui.QFrame.Sunken)
-       self.artangValueLabel = QtGui.QLabel(u"%5.3f \u00B0" % artang)
-       self.artangValueLabel.setFrameStyle(QtGui.QFrame.Panel |  QtGui.QFrame.Sunken)
-       self.slitnameValueLabel = QtGui.QLabel(slitname)
-       self.slitnameValueLabel.setFrameStyle(QtGui.QFrame.Panel |  QtGui.QFrame.Sunken)
-       self.slitsizeValueLabel = QtGui.QLabel("%3.2f''" % slitsize)
-       self.slitsizeValueLabel.setFrameStyle(QtGui.QFrame.Panel |  QtGui.QFrame.Sunken)
+       self.gratingLabel = QtWidgets.QLabel("Grating")
+       self.gratingLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+       self.graangLabel = QtWidgets.QLabel("GR-ANGLE")
+       self.graangLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+       self.artangLabel = QtWidgets.QLabel("AR-ANGLE")
+       self.artangLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+       self.slitnameLabel = QtWidgets.QLabel("SLIT")
+       self.slitnameLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+       self.slitsizeLabel = QtWidgets.QLabel("SIZE")
+       self.slitsizeLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+       self.gratingValueLabel = QtWidgets.QLabel(grating)
+       self.gratingValueLabel.setFrameStyle(QtWidgets.QFrame.Panel |  QtWidgets.QFrame.Sunken)
+       self.graangValueLabel = QtWidgets.QLabel(u"%5.3f \u00B0" % graang)
+       self.graangValueLabel.setFrameStyle(QtWidgets.QFrame.Panel |  QtWidgets.QFrame.Sunken)
+       self.artangValueLabel = QtWidgets.QLabel(u"%5.3f \u00B0" % artang)
+       self.artangValueLabel.setFrameStyle(QtWidgets.QFrame.Panel |  QtWidgets.QFrame.Sunken)
+       self.slitnameValueLabel = QtWidgets.QLabel(slitname)
+       self.slitnameValueLabel.setFrameStyle(QtWidgets.QFrame.Panel |  QtWidgets.QFrame.Sunken)
+       self.slitsizeValueLabel = QtWidgets.QLabel("%3.2f''" % slitsize)
+       self.slitsizeValueLabel.setFrameStyle(QtWidgets.QFrame.Panel |  QtWidgets.QFrame.Sunken)
 
-       self.bluewaveLabel = QtGui.QLabel("Blue Edge")
-       self.bluewaveLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-       self.centwaveLabel = QtGui.QLabel("Center Wave")
-       self.centwaveLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-       self.redwaveLabel = QtGui.QLabel("Red Edge")
-       self.redwaveLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-       self.resolutionLabel = QtGui.QLabel("Resolution")
-       self.resolutionLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-       self.reselementLabel = QtGui.QLabel("Resolution element")
-       self.reselementLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-       self.bluewaveValueLabel = QtGui.QLabel(u"%7.2f \u00c5" % w1)
-       self.bluewaveValueLabel.setFrameStyle(QtGui.QFrame.Panel |  QtGui.QFrame.Sunken)
-       self.centwaveValueLabel = QtGui.QLabel(u"%7.2f \u00c5" % wcen)
-       self.centwaveValueLabel.setFrameStyle(QtGui.QFrame.Panel |  QtGui.QFrame.Sunken)
-       self.redwaveValueLabel = QtGui.QLabel(u"%7.2f \u00c5" % w2)
-       self.redwaveValueLabel.setFrameStyle(QtGui.QFrame.Panel |  QtGui.QFrame.Sunken)
-       self.resolutionValueLabel = QtGui.QLabel("%5i" % R)
-       self.resolutionValueLabel.setFrameStyle(QtGui.QFrame.Panel |  QtGui.QFrame.Sunken)
-       self.reselementValueLabel = QtGui.QLabel(u"%4.2f \u00c5" % res)
-       self.reselementValueLabel.setFrameStyle(QtGui.QFrame.Panel |  QtGui.QFrame.Sunken)
+       self.bluewaveLabel = QtWidgets.QLabel("Blue Edge")
+       self.bluewaveLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+       self.centwaveLabel = QtWidgets.QLabel("Center Wave")
+       self.centwaveLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+       self.redwaveLabel = QtWidgets.QLabel("Red Edge")
+       self.redwaveLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+       self.resolutionLabel = QtWidgets.QLabel("Resolution")
+       self.resolutionLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+       self.reselementLabel = QtWidgets.QLabel("Resolution element")
+       self.reselementLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+       self.bluewaveValueLabel = QtWidgets.QLabel(u"%7.2f \u00c5" % w1)
+       self.bluewaveValueLabel.setFrameStyle(QtWidgets.QFrame.Panel |  QtWidgets.QFrame.Sunken)
+       self.centwaveValueLabel = QtWidgets.QLabel(u"%7.2f \u00c5" % wcen)
+       self.centwaveValueLabel.setFrameStyle(QtWidgets.QFrame.Panel |  QtWidgets.QFrame.Sunken)
+       self.redwaveValueLabel = QtWidgets.QLabel(u"%7.2f \u00c5" % w2)
+       self.redwaveValueLabel.setFrameStyle(QtWidgets.QFrame.Panel |  QtWidgets.QFrame.Sunken)
+       self.resolutionValueLabel = QtWidgets.QLabel("%5i" % R)
+       self.resolutionValueLabel.setFrameStyle(QtWidgets.QFrame.Panel |  QtWidgets.QFrame.Sunken)
+       self.reselementValueLabel = QtWidgets.QLabel(u"%4.2f \u00c5" % res)
+       self.reselementValueLabel.setFrameStyle(QtWidgets.QFrame.Panel |  QtWidgets.QFrame.Sunken)
 
        #set up the signal to noise
        
@@ -160,17 +160,17 @@ class DQWidget(QtGui.QWidget):
           med_sn=0
           peak_sn=0
 
-       self.snLabel = QtGui.QLabel("Median S/N")
-       self.snLabel.setFrameStyle(QtGui.QFrame.Panel |  QtGui.QFrame.Raised)
-       self.snValueLabel = QtGui.QLabel("%5.2f" % med_sn)
-       self.snValueLabel.setFrameStyle(QtGui.QFrame.Panel |  QtGui.QFrame.Sunken)
-       self.psnLabel = QtGui.QLabel("Median Peak S/N")
-       self.psnLabel.setFrameStyle(QtGui.QFrame.Panel |  QtGui.QFrame.Raised)
-       self.psnValueLabel = QtGui.QLabel("%5.2f" % peak_sn)
-       self.psnValueLabel.setFrameStyle(QtGui.QFrame.Panel |  QtGui.QFrame.Sunken)
+       self.snLabel = QtWidgets.QLabel("Median S/N")
+       self.snLabel.setFrameStyle(QtWidgets.QFrame.Panel |  QtWidgets.QFrame.Raised)
+       self.snValueLabel = QtWidgets.QLabel("%5.2f" % med_sn)
+       self.snValueLabel.setFrameStyle(QtWidgets.QFrame.Panel |  QtWidgets.QFrame.Sunken)
+       self.psnLabel = QtWidgets.QLabel("Median Peak S/N")
+       self.psnLabel.setFrameStyle(QtWidgets.QFrame.Panel |  QtWidgets.QFrame.Raised)
+       self.psnValueLabel = QtWidgets.QLabel("%5.2f" % peak_sn)
+       self.psnValueLabel.setFrameStyle(QtWidgets.QFrame.Panel |  QtWidgets.QFrame.Sunken)
 
        #set the layout
-       dataLayout=QtGui.QGridLayout(datapanel)
+       dataLayout=QtWidgets.QGridLayout(datapanel)
        dataLayout.addWidget(self.gratingLabel, 0, 0, 1, 1)
        dataLayout.addWidget(self.graangLabel, 0, 1, 1, 1)
        dataLayout.addWidget(self.artangLabel, 0, 2, 1, 1)
@@ -202,7 +202,7 @@ class DQWidget(QtGui.QWidget):
 
    def set_imaging(self):
        #set up the data panel
-       datapanel=QtGui.QWidget()
+       datapanel=QtWidgets.QWidget()
 
        #get some variables from the data
        exptime=float(self.getitem('EXPTIME'))
@@ -244,50 +244,50 @@ class DQWidget(QtGui.QWidget):
           seeing=-1
 
        #Display the filter, pix_scale, airmass, exptime
-       self.filterLabel = QtGui.QLabel("FILTER")
-       self.filterLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-       self.exptimeLabel = QtGui.QLabel("EXPTIME")
-       self.exptimeLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-       self.pixscaleLabel = QtGui.QLabel("PIXSCALE")
-       self.pixscaleLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-       self.airmassLabel = QtGui.QLabel("AIRMASS")
-       self.airmassLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
+       self.filterLabel = QtWidgets.QLabel("FILTER")
+       self.filterLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+       self.exptimeLabel = QtWidgets.QLabel("EXPTIME")
+       self.exptimeLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+       self.pixscaleLabel = QtWidgets.QLabel("PIXSCALE")
+       self.pixscaleLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+       self.airmassLabel = QtWidgets.QLabel("AIRMASS")
+       self.airmassLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
 
-       self.filterValueLabel = QtGui.QLabel(filtername)
-       self.filterValueLabel.setFrameStyle(QtGui.QFrame.Panel |  QtGui.QFrame.Sunken)
-       self.exptimeValueLabel = QtGui.QLabel('%6.2f s' % exptime)
-       self.exptimeValueLabel.setFrameStyle(QtGui.QFrame.Panel |  QtGui.QFrame.Sunken)
-       self.pixscaleValueLabel = QtGui.QLabel("%3.2f ''/pix" % pix_scale)
-       self.pixscaleValueLabel.setFrameStyle(QtGui.QFrame.Panel |  QtGui.QFrame.Sunken)
-       self.airmassValueLabel = QtGui.QLabel('%3.2f' % am)
-       self.airmassValueLabel.setFrameStyle(QtGui.QFrame.Panel |  QtGui.QFrame.Sunken)
+       self.filterValueLabel = QtWidgets.QLabel(filtername)
+       self.filterValueLabel.setFrameStyle(QtWidgets.QFrame.Panel |  QtWidgets.QFrame.Sunken)
+       self.exptimeValueLabel = QtWidgets.QLabel('%6.2f s' % exptime)
+       self.exptimeValueLabel.setFrameStyle(QtWidgets.QFrame.Panel |  QtWidgets.QFrame.Sunken)
+       self.pixscaleValueLabel = QtWidgets.QLabel("%3.2f ''/pix" % pix_scale)
+       self.pixscaleValueLabel.setFrameStyle(QtWidgets.QFrame.Panel |  QtWidgets.QFrame.Sunken)
+       self.airmassValueLabel = QtWidgets.QLabel('%3.2f' % am)
+       self.airmassValueLabel.setFrameStyle(QtWidgets.QFrame.Panel |  QtWidgets.QFrame.Sunken)
 
        #display  the background stats
-       self.bmeanLabel = QtGui.QLabel("BACKGROUND MEAN")
-       self.bmeanLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-       self.bmidptLabel = QtGui.QLabel("BACKGROUND MIDPT")
-       self.bmidptLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-       self.bstdLabel = QtGui.QLabel("BACKGROUND STD")
-       self.bstdLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-       self.bmeanValueLabel = QtGui.QLabel('%5.2f' % bmean)
-       self.bmeanValueLabel.setFrameStyle(QtGui.QFrame.Panel |  QtGui.QFrame.Sunken)
-       self.bmidptValueLabel = QtGui.QLabel('%5.2f' % bmidpt)
-       self.bmidptValueLabel.setFrameStyle(QtGui.QFrame.Panel |  QtGui.QFrame.Sunken)
-       self.bstdValueLabel = QtGui.QLabel('%5.2f' % bstd)
-       self.bstdValueLabel.setFrameStyle(QtGui.QFrame.Panel |  QtGui.QFrame.Sunken)
+       self.bmeanLabel = QtWidgets.QLabel("BACKGROUND MEAN")
+       self.bmeanLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+       self.bmidptLabel = QtWidgets.QLabel("BACKGROUND MIDPT")
+       self.bmidptLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+       self.bstdLabel = QtWidgets.QLabel("BACKGROUND STD")
+       self.bstdLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+       self.bmeanValueLabel = QtWidgets.QLabel('%5.2f' % bmean)
+       self.bmeanValueLabel.setFrameStyle(QtWidgets.QFrame.Panel |  QtWidgets.QFrame.Sunken)
+       self.bmidptValueLabel = QtWidgets.QLabel('%5.2f' % bmidpt)
+       self.bmidptValueLabel.setFrameStyle(QtWidgets.QFrame.Panel |  QtWidgets.QFrame.Sunken)
+       self.bstdValueLabel = QtWidgets.QLabel('%5.2f' % bstd)
+       self.bstdValueLabel.setFrameStyle(QtWidgets.QFrame.Panel |  QtWidgets.QFrame.Sunken)
        
        #display seeing, number of sources
-       self.seeLabel = QtGui.QLabel("SEEING")
-       self.seeLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-       self.seeValueLabel = QtGui.QLabel("%3.2f'' " % see)
-       self.seeValueLabel.setFrameStyle(QtGui.QFrame.Panel |  QtGui.QFrame.Sunken)
-       self.sourceLabel = QtGui.QLabel("SOURCES Detected")
-       self.sourceLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Raised)
-       self.sourceValueLabel = QtGui.QLabel("%i" % nsource)
-       self.sourceValueLabel.setFrameStyle(QtGui.QFrame.Panel |  QtGui.QFrame.Sunken)
+       self.seeLabel = QtWidgets.QLabel("SEEING")
+       self.seeLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+       self.seeValueLabel = QtWidgets.QLabel("%3.2f'' " % see)
+       self.seeValueLabel.setFrameStyle(QtWidgets.QFrame.Panel |  QtWidgets.QFrame.Sunken)
+       self.sourceLabel = QtWidgets.QLabel("SOURCES Detected")
+       self.sourceLabel.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+       self.sourceValueLabel = QtWidgets.QLabel("%i" % nsource)
+       self.sourceValueLabel.setFrameStyle(QtWidgets.QFrame.Panel |  QtWidgets.QFrame.Sunken)
 
        #add it to the panel
-       dataLayout=QtGui.QGridLayout(datapanel)
+       dataLayout=QtWidgets.QGridLayout(datapanel)
        dataLayout.addWidget(self.filterLabel, 0, 0, 1, 1)
        dataLayout.addWidget(self.exptimeLabel, 0, 1, 1, 1)
        dataLayout.addWidget(self.pixscaleLabel, 0, 2, 1, 1)

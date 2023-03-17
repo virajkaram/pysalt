@@ -21,9 +21,9 @@ from iraf import pysalt
 
 from ImageDisplay import ImageDisplay
 
-class SlitMaskGui(QtGui.QMainWindow, InfoTab, CatalogTab, OptimizeTab, SlitTab, RefTab, FinalizeTab):
+class SlitMaskGui(QtWidgets.QMainWindow, InfoTab, CatalogTab, OptimizeTab, SlitTab, RefTab, FinalizeTab):
     def __init__(self, parent=None, infile=None, inimage=None, center_ra=None, center_dec=None, position_angle=None):
-        QtGui.QWidget.__init__(self, parent)
+        QtWidgets.QWidget.__init__(self, parent)
         
         #set up the main UI
         self.ui = Ui_MainWindow()
@@ -293,7 +293,7 @@ class SlitMaskGui(QtGui.QMainWindow, InfoTab, CatalogTab, OptimizeTab, SlitTab, 
         if not inimage:
              #launch a file IO dialog
              ldir = os.getcwd()
-             inimage = QtGui.QFileDialog.getOpenFileName(caption="Open Catalog", directory=ldir)
+             inimage = QtWidgets.QFileDialog.getOpenFileName(caption="Open Catalog", directory=ldir)
 
         self.inimage=str(inimage)
         self.imagedisplay.display(inimage, pa=self.position_angle)
@@ -364,21 +364,21 @@ class SlitMaskGui(QtGui.QMainWindow, InfoTab, CatalogTab, OptimizeTab, SlitTab, 
         self.updatetabs()
 
     def setPalette(self,mode):
-        palette = QtGui.QPalette()
+        palette = QtWidgets.QPalette()
 
         if mode == 'error':
-            brush = QtGui.QBrush(QtGui.QColor(255, 148, 148))
+            brush = QtWidgets.QBrush(QtWidgets.QColor(255, 148, 148))
             brush.setStyle(QtCore.Qt.SolidPattern)
-            palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Base, brush)
-            palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Base, brush)
+            palette.setBrush(QtWidgets.QPalette.Active, QtWidgets.QPalette.Base, brush)
+            palette.setBrush(QtWidgets.QPalette.Inactive, QtWidgets.QPalette.Base, brush)
 
             return palette
 
         if mode == 'normal':
-            brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+            brush = QtWidgets.QBrush(QtWidgets.QColor(255, 255, 255))
             brush.setStyle(QtCore.Qt.SolidPattern)
-            palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Base, brush)
-            palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Base, brush)
+            palette.setBrush(QtWidgets.QPalette.Active, QtWidgets.QPalette.Base, brush)
+            palette.setBrush(QtWidgets.QPalette.Inactive, QtWidgets.QPalette.Base, brush)
 
             return palette
 
@@ -389,7 +389,7 @@ if __name__ == "__main__":
      infile=sys.argv[1]
   if len(sys.argv)==3:
      inimage=sys.argv[2]
-  app = QtGui.QApplication([])
+  app = QtWidgets.QApplication([])
   myapp = SlitMaskGui(infile=infile, inimage=inimage)
   myapp.show()
   sys.exit(app.exec_())

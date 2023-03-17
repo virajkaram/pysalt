@@ -32,7 +32,7 @@ import scipy as sp
 import warnings
 
 # Gui library imports
-from PyQt5 import QtGui, QtCore
+from PyQt5 import QtWidgets, QtCore
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QTAgg
 
 
@@ -91,7 +91,7 @@ def saltfirst(obsdate, imdir, prodir, server='smtp.saao.ac.za', readme='readme.f
    with logging(logfile,debug) as log:
 
        #create GUI
-       App = QtGui.QApplication([])
+       App = QtWidgets.QApplication([])
 
        #Add information to gui
        aw=FirstWindow(obsdate, imdir, prodir, server=server, readme=readme, sdbhost=sdbhost, sdbname=sdbname, sdbuser=sdbuser, password=password, imreduce=imreduce, sexfile=sexfile, update=update, clobber=clobber, log=log, verbose=verbose)
@@ -106,7 +106,7 @@ def saltfirst(obsdate, imdir, prodir, server='smtp.saao.ac.za', readme='readme.f
        if exit!=0:
            raise SaltError('SALTFIRST GUI has unexpected exit status '+str(exit))
 
-class FirstWindow(QtGui.QMainWindow):
+class FirstWindow(QtWidgets.QMainWindow):
 
    def __init__(self, obsdate, imdir, prodir, server='smtp.saao.ac.za', readme='readme.fast.template',  \
                 sdbhost='sdb.salt', sdbname='sdb', sdbuser='', \
@@ -137,10 +137,10 @@ class FirstWindow(QtGui.QMainWindow):
         self.pickle_file='%s_obslog.p' % self.obsdate
 
         # Setup widget
-        QtGui.QMainWindow.__init__(self)
+        QtWidgets.QMainWindow.__init__(self)
 
         # Set main widget
-        self.main = QtGui.QWidget(self)
+        self.main = QtWidgets.QWidget(self)
 
         # Set window title
         self.setWindowTitle("SALTFIRST")
@@ -173,18 +173,18 @@ class FirstWindow(QtGui.QMainWindow):
         self.specTab=SpectraViewWidget(None, None, None, hmin=hmin, wmin=wmin)
         self.obsTab=ObsLogWidget(self.obsdict, obsdate=self.obsdate)
         #create the tabs
-        self.tabWidget=QtGui.QTabWidget()
+        self.tabWidget=QtWidgets.QTabWidget()
         self.tabWidget.addTab(self.infoTab, 'Info')
         self.tabWidget.addTab(self.dqTab, 'DQ')
         #self.tabWidget.addTab(self.imageTab, 'Image')
         self.tabWidget.addTab(self.specTab, 'Spectra')
         self.tabWidget.addTab(self.obsTab, 'Log')
         #create button to reset the filewatcher
-        self.checkButton = QtGui.QPushButton("Check for Data")
+        self.checkButton = QtWidgets.QPushButton("Check for Data")
         self.checkButton.clicked.connect(self.clickfordata)
      
         #layout the widgets
-        mainLayout = QtGui.QVBoxLayout(self.main)
+        mainLayout = QtWidgets.QVBoxLayout(self.main)
         mainLayout.addWidget(self.tabWidget)
         mainLayout.addWidget(self.checkButton)
         #set up thrading

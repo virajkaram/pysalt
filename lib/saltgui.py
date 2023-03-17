@@ -43,7 +43,7 @@ import pyfits
 import numpy as np
 
 # Gui library imports
-from PyQt5 import QtGui, QtCore
+from PyQt5 import QtWidgets, QtCore
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 from matplotlib.patches import CirclePolygon, Rectangle
@@ -65,8 +65,8 @@ class MplCanvas(FigureCanvas):
 
         # Set resize policy
         FigureCanvas.setSizePolicy(self,
-                                   QtGui.QSizePolicy.Expanding,
-                                   QtGui.QSizePolicy.Expanding)
+                                   QtWidgets.QSizePolicy.Expanding,
+                                   QtWidgets.QSizePolicy.Expanding)
 
         # Set geometry
         FigureCanvas.updateGeometry(self)

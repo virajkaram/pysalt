@@ -47,7 +47,7 @@ class CatalogTab:
 
         #launch a file IO dialog
         ldir = os.getcwd()
-        infile = QtGui.QFileDialog.getOpenFileName(caption="Open Catalog", directory=ldir)
+        infile = QtWidgets.QFileDialog.getOpenFileName(caption="Open Catalog", directory=ldir)
 
         #load that file into the catalog
         self.entercatalog(str(infile))
@@ -137,14 +137,14 @@ class CatalogTab:
     def parseItem(self, x):
        """Parse an object so it can be entered into the table"""
        if isinstance(x, str):
-           return QtGui.QTableWidgetItem(x)
+           return QtWidgets.QTableWidgetItem(x)
        elif isinstance(x, np.float32):
-           return QtGui.QTableWidgetItem('%f' % x)
+           return QtWidgets.QTableWidgetItem('%f' % x)
        elif isinstance(x, float):
-           return QtGui.QTableWidgetItem('%f' % x)
+           return QtWidgets.QTableWidgetItem('%f' % x)
        elif isinstance(x, int):
-           return QtGui.QTableWidgetItem('%i' % x)
-       return QtGui.QTableWidgetItem('')
+           return QtWidgets.QTableWidgetItem('%i' % x)
+       return QtWidgets.QTableWidgetItem('')
 
   
 
