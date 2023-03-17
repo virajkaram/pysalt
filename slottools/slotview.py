@@ -58,7 +58,7 @@ from matplotlib.widgets import Cursor, SpanSelector, Slider, CheckButtons
 
 # Gui library imports
 from PyQt5 import QtGui, QtCore
-from matplotlib.backends.backend_qt4agg import NavigationToolbar2QT
+from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT
 
 # Salt imports
 from saltgui import ImageDisplay, MplCanvas

@@ -4,7 +4,7 @@ it expects to be given the wavelenght, flux, and sn arrays for the data
 """
 import numpy as np
 from PyQt5 import QtGui, QtCore
-from matplotlib.backends.backend_qt4agg import NavigationToolbar2QTAgg
+from matplotlib.backends.backend_qt5agg import NavigationToolbar2QTAgg
 from saltgui import MplCanvas
 from InterIdentify import ArcDisplay
 

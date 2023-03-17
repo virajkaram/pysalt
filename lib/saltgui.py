@@ -44,7 +44,7 @@ import numpy as np
 
 # Gui library imports
 from PyQt5 import QtGui, QtCore
-from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 from matplotlib.patches import CirclePolygon, Rectangle
 
