@@ -603,7 +603,7 @@ def entersolution(solfiles):
     if isinstance(solfiles, str):
         solfile = solfiles
         if solfile[-4:] == 'fits':
-            print 'Not supported yet'
+            print('Not supported yet')
         else:
             soldict = readsolascii(solfile, soldict)
     else:
