@@ -54,7 +54,7 @@ from pyraf import iraf
 from pyraf.iraf import pysalt
 import os, string, sys, glob, pyfits, time
 
-from PyQt4 import QtCore, QtGui
+from PyQt5 import QtCore, QtGui
 from pySlitMask import SlitMaskGui
 from saltsafelog import logging, history
 

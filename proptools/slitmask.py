@@ -6,7 +6,8 @@ from slitlets import Slitlets
 from xml.dom import minidom, getDOMImplementation
 import xml.parsers.expat
 
-from PyQt4.QtCore import Qt, QVariant, QObject, SIGNAL, QAbstractTableModel, QModelIndex
+from PyQt5.QtCore import Qt, QVariant, QObject, QAbstractTableModel, QModelIndex
+
 
 class SlitMaskError(Exception):
     """Base class for exceptions from the slitmaks class"""

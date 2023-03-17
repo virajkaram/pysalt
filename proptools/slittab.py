@@ -2,7 +2,7 @@
 import os, sys
 import numpy as np
 
-from PyQt4 import QtCore, QtGui
+from PyQt5 import QtCore, QtGui
 
 from slitlets import Slitlets
 
@@ -181,7 +181,7 @@ class SlitTab:
        """Parse an object so it can be entered into the table"""
        if isinstance(x, str):
            return QtGui.QTableWidgetItem(x)
-       elif isinstance(x, numpy.float32):
+       elif isinstance(x, np.float32):
            return QtGui.QTableWidgetItem('%f' % x)
        elif isinstance(x, float):
            return QtGui.QTableWidgetItem('%f' % x)
