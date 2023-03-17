@@ -11,7 +11,7 @@
 #       It can be modified, but if open with a qt editor
 #       it will be overwritten
 
-from PyQt4 import QtCore
+from PyQt5 import QtCore
 
 qt_resource_data = "\
 \x00\x00\x01\x4d\

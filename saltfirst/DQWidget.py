@@ -5,7 +5,7 @@ of an image
 import numpy as np 
 import pyfits
 
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore
 from ObsLogWidget import headerList, printList
 
 from saltstat import iterstat

@@ -1,6 +1,6 @@
 import numpy as np
 import os, errno
-from PyQt4 import QtGui,QtCore
+from PyQt5 import QtGui,QtCore
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt4agg import NavigationToolbar2QTAgg
 from pyraf import iraf

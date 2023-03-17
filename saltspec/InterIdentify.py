@@ -38,7 +38,7 @@ from pyraf import iraf
 from pyraf.iraf import pysalt
 
 # Gui library imports
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore
 from matplotlib.backends.backend_qt4agg import NavigationToolbar2QT
 
 # Salt imports

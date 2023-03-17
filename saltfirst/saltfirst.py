@@ -32,7 +32,7 @@ import scipy as sp
 import warnings
 
 # Gui library imports
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore
 from matplotlib.backends.backend_qt4agg import NavigationToolbar2QTAgg
 
 

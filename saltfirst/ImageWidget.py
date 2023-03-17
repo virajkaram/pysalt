@@ -2,7 +2,7 @@
 imageWidget is a Qt4 Widget for displaying an image in the frame
 """
 import os
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore
 from matplotlib.backends.backend_qt4agg import NavigationToolbar2QTAgg
 from saltgui import ImageDisplay, MplCanvas
 

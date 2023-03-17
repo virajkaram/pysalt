@@ -6,7 +6,7 @@ from xml.dom import minidom
 import xml.parsers.expat
 
 
-from PyQt4 import QtCore, QtGui
+from PyQt5 import QtCore, QtGui
 
 
 from slitmask import SlitMask

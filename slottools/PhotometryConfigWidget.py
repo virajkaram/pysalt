@@ -43,7 +43,7 @@ import pyfits
 import numpy as np
 
 # Gui library imports
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 from matplotlib.patches import CirclePolygon, Rectangle

@@ -1,7 +1,7 @@
 """
 ObsLogwidget is a Qt4 Widget for displaying the night log for the night
 """
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore
 
 #headerList= ["Name", "UTC-OBS", "OBJECT", "PROPOSAL", "EXPTIME", "CCDSUM", "GAINSET", "ROSPEED", "OBSMODE", "DETMODE", "FILTER", "GRATING", "GR-ANGLE", "AR-ANGLE", "FOCUS", "MASKTYPE"]
 headerList= ["Name", "TIME-OBS", "OBJECT", "PROPID", "EXPTIME", "CCDSUM", "GAINSET", "ROSPEED", "OBSMODE", "DETMODE", "CCDTYPE", "FILTER", "GRATING", "GR-ANGLE", "AR-ANGLE", "MASKID", "LAMPID", "FOCUS", "TELAZ", "TELALT", "SEEING", "NSOURCES", "BMEAN", "BMIDPT", "BSTD"]

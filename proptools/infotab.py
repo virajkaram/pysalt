@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import sys
-from PyQt5 import QtCore, QtGui,
+from PyQt5.QtCore import QObject
 '''
 
 '''
