@@ -200,6 +200,7 @@ def runsolution(xarr, specarr, slines, sfluxes, ws, func, ivar=None,
     print(istart, int(0.5 * len(specarr)), rstep, istart)
     for i in range(0, int(0.5 * len(specarr)), rstep):
         print("In outer looooooooop")
+        print(istart-i, istart+i)
         for k in [istart - i, istart + i]:
 
             if k in ImageSolution.keys():
