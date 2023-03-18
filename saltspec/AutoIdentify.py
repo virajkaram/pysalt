@@ -79,16 +79,18 @@ def AutoIdentify(xarr, specarr, slines, sfluxes, ws, method='Zeropoint',
     # in the image with those in the line list
     if method == 'Matchlines':
         func = st.findwavelengthsolution
+        print(func)
         # set wdiff
         try:
             wdiff = mdiff * ws.coef[1]
         except:
             wdiff = mdiff
         wdiff = 20
+        print("running runsolution")
         ImageSolution = runsolution(xarr, specarr, slines, sfluxes, ws, func, fline=True, oneline=oneline,
                                     rstep=rstep, istart=istart, nrows=nrows, res=res, subback=subback, smooth=smooth, dres=dres, farr=farr,
                                     dsigma=dsigma, dniter=niter, log=log, verbose=verbose, mdiff=mdiff, wdiff=wdiff, sigma=sigma, niter=niter)
-
+        print(ImageSolution)
     # first fit a zeropoint, then match the lines, and then
     # find the rest of the points by using only the zeropoint
     if method == 'MatchZero':
