@@ -518,7 +518,7 @@ class arcWidget(QtWidgets.QWidget):
         mainLayout.addWidget(self.infopanel)
         self.setLayout(mainLayout)
 
-        self.arcdisplay.keyPressEvent.connect(self.keyPressEvent)
+        self.arcdisplay.keyPressEvent().connect(self.keyPressEvent)
         # self.connect(
         #     self.arcdisplay,
         #     QtCore.SIGNAL('keyPressEvent'),
