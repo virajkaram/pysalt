@@ -159,12 +159,12 @@ class InterIdentifyWindow(QtWidgets.QMainWindow):
         self.tabWidget.currentChanged.connect(self.currentChanged)
         # self.connect(self.tabWidget, QtCore.SIGNAL('currentChanged(int)'),
         #              self.currentChanged)
-        self.connect(self.imagePage, QtCore.SIGNAL('regionChange(int,int)'),
-                     self.regionChange)
-        self.connect(self.imagePage, QtCore.SIGNAL('runauto(int, int, int)'),
-                     self.runauto)
-        self.connect(self.arcPage, QtCore.SIGNAL('savews()'), self.saveWS)
-        self.connect(self.arcdisplay, QtCore.SIGNAL('quit()'), self.close)
+        # self.connect(self.imagePage, QtCore.SIGNAL('regionChange(int,int)'),
+        #              self.regionChange)
+        # self.connect(self.imagePage, QtCore.SIGNAL('runauto(int, int, int)'),
+        #              self.runauto)
+        # self.connect(self.arcPage, QtCore.SIGNAL('savews()'), self.saveWS)
+        # self.connect(self.arcdisplay, QtCore.SIGNAL('quit()'), self.close)
 
     def keyPressEvent(self, event):
         # print "Key Pressed:", event.key
