@@ -1112,6 +1112,7 @@ class ArcDisplay(QtWidgets.QWidget):
                               res=self.res, dres=self.dres, mdiff=self.mdiff, sigma=self.sigma,
                               smooth=self.smooth, niter=self.niter, dc=self.dc, ndstep=self.ndstep,
                               oneline=oneline, log=self.log, verbose=self.verbose)
+        print(iws)
         if oneline:
             self.ws = iws
         else:
