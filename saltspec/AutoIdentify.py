@@ -219,6 +219,8 @@ def runsolution(xarr, specarr, slines, sfluxes, ws, func, ivar=None,
             # find the solution to the lines
             fws = solution(xarr, farr, swarr, sfarr, lws, func,
                            min_lines=min_lines, dsigma=dsigma, dniter=dniter, **kwargs)
+            print("In loop")
+            print(fws)
             if fws is not None:
                 if fws.sigma(fws.func.x, fws.func.y) < dres:
                     ImageSolution[k] = fws
