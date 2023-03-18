@@ -157,8 +157,8 @@ class InterIdentifyWindow(QtWidgets.QMainWindow):
         # self.connect(self.conf, QtCore.SIGNAL('destroyed()'),
         #              self, QtCore.SLOT('close()'))
         self.tabWidget.currentChanged.connect(self.currentChanged)
-        self.tabWidget.regionChange.connect(self.regionChange)
-        self.tabWidget.runauto.connect(self.runauto)
+        # self.imagePage.regionChange.connect(self.regionChange)
+        self.imagePage.runauto_signal.connect(self.runauto)
         # self.connect(self.tabWidget, QtCore.SIGNAL('currentChanged(int)'),
         #              self.currentChanged)
         # self.connect(self.imagePage, QtCore.SIGNAL('regionChange(int,int)'),
