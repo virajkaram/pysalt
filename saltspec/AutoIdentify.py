@@ -196,7 +196,9 @@ def runsolution(xarr, specarr, slines, sfluxes, ws, func, ivar=None,
     if log is not None:
         log.message('%5s %3s %4s' % ('Line', 'N', 'RMS'), with_header=False)
 
+    print(istart, int(0.5 * len(specarr)), rstep, istart)
     for i in range(0, int(0.5 * len(specarr)), rstep):
+        print("In outer looooooooop")
         for k in [istart - i, istart + i]:
 
             if k in ImageSolution.keys():
