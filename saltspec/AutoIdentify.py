@@ -175,6 +175,7 @@ def runsolution(xarr, specarr, slines, sfluxes, ws, func, ivar=None,
     # find the solution for the central wavelegnth
     k = istart
     min_lines = 0.1 * len(cxp)
+    print("Oneline", oneline)
     if oneline:
         mws = solution(xarr, farr, swarr, sfarr, ws, func,
                        min_lines=min_lines, dsigma=dsigma, dniter=dniter, **kwargs)
