@@ -283,7 +283,8 @@ class InterIdentifyWindow(QtWidgets.QMainWindow):
 
 
 class imageWidget(QtWidgets.QWidget):
-
+    runauto_signal = QtCore.pyqtSignal(int, int, int)
+    
     def __init__(self, imarr, y1=None, y2=None, nrows=1, rstep=100, hmin=150, wmin=400,
                  name=None, cmap='Gray', scale='zscale', contrast=0.1, log=None, parent=None):
         super(imageWidget, self).__init__(parent)
@@ -351,7 +352,7 @@ class imageWidget(QtWidgets.QWidget):
         self.autoButton = QtWidgets.QPushButton("Auto-Identify")
         self.autoButton.clicked.connect(self.runauto)
 
-        self.runauto_signal = QtCore.pyqtSignal(int, int, int)
+
         # set up the info panel layout
         infoLayout = QtWidgets.QGridLayout(self.infopanel)
         infoLayout.addWidget(self.NameLabel, 0, 0, 1, 1)
