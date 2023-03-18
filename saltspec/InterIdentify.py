@@ -156,8 +156,9 @@ class InterIdentifyWindow(QtWidgets.QMainWindow):
         # Close when config dialog is closed
         # self.connect(self.conf, QtCore.SIGNAL('destroyed()'),
         #              self, QtCore.SLOT('close()'))
-        self.connect(self.tabWidget, QtCore.SIGNAL('currentChanged(int)'),
-                     self.currentChanged)
+        self.tabWidget.currentChanged.connect(self.currentChanged)
+        # self.connect(self.tabWidget, QtCore.SIGNAL('currentChanged(int)'),
+        #              self.currentChanged)
         self.connect(self.imagePage, QtCore.SIGNAL('regionChange(int,int)'),
                      self.regionChange)
         self.connect(self.imagePage, QtCore.SIGNAL('runauto(int, int, int)'),
@@ -517,10 +518,11 @@ class arcWidget(QtWidgets.QWidget):
         mainLayout.addWidget(self.infopanel)
         self.setLayout(mainLayout)
 
-        self.connect(
-            self.arcdisplay,
-            QtCore.SIGNAL('keyPressEvent'),
-            self.keyPressEvent)
+        self.arcdisplay.keyPressEvent.connect(self.keyPressEvent)
+        # self.connect(
+        #     self.arcdisplay,
+        #     QtCore.SIGNAL('keyPressEvent'),
+        #     self.keyPressEvent)
         self.connect(
             self.arcdisplay,
             QtCore.SIGNAL('updatex(float)'),
