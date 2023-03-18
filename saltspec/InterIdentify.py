@@ -275,16 +275,17 @@ class InterIdentifyWindow(QtWidgets.QMainWindow):
 
     def runauto(self, istart, nrows, rstep):
         """ Autoidentify the rest of the lines and produce the image solution"""
+        print("Running autoidentify")
         self.ImageSolution = self.arcdisplay.autoidentify(
             istart=istart,
             nrows=nrows,
             rstep=rstep,
             oneline=False)
-
+        print("Finished autoidentify")
 
 class imageWidget(QtWidgets.QWidget):
     runauto_signal = QtCore.pyqtSignal(int, int, int)
-    
+
     def __init__(self, imarr, y1=None, y2=None, nrows=1, rstep=100, hmin=150, wmin=400,
                  name=None, cmap='Gray', scale='zscale', contrast=0.1, log=None, parent=None):
         super(imageWidget, self).__init__(parent)
