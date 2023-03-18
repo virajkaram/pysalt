@@ -157,6 +157,8 @@ class InterIdentifyWindow(QtWidgets.QMainWindow):
         # self.connect(self.conf, QtCore.SIGNAL('destroyed()'),
         #              self, QtCore.SLOT('close()'))
         self.tabWidget.currentChanged.connect(self.currentChanged)
+        self.tabWidget.regionChange.connect(self.regionChange)
+        self.tabWidget.runauto.connect(self.runauto)
         # self.connect(self.tabWidget, QtCore.SIGNAL('currentChanged(int)'),
         #              self.currentChanged)
         # self.connect(self.imagePage, QtCore.SIGNAL('regionChange(int,int)'),
@@ -349,6 +351,7 @@ class imageWidget(QtWidgets.QWidget):
         self.autoButton = QtWidgets.QPushButton("Auto-Identify")
         self.autoButton.clicked.connect(self.runauto)
 
+        self.runauto_signal = QtCore.pyqtSignal(int, int, int)
         # set up the info panel layout
         infoLayout = QtWidgets.QGridLayout(self.infopanel)
         infoLayout.addWidget(self.NameLabel, 0, 0, 1, 1)
@@ -398,11 +401,12 @@ class imageWidget(QtWidgets.QWidget):
     def runauto(self):
         if self.log is not None:
             self.log.message("Running Auto")
-        self.emit(
-            QtCore.SIGNAL("runauto(int, int, int)"),
-            self.y1,
-            self.nrows,
-            self.rstep)
+        self.runauto_signal.emit(self.y1, self.nrows, self.rstep)
+        # self.emit(
+        #     QtCore.SIGNAL("runauto(int, int, int)"),
+        #     self.y1,
+        #     self.nrows,
+        #     self.rstep)
 
 
 class arcWidget(QtWidgets.QWidget):
