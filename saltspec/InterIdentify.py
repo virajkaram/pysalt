@@ -518,23 +518,22 @@ class arcWidget(QtWidgets.QWidget):
         mainLayout.addWidget(self.infopanel)
         self.setLayout(mainLayout)
 
-        self.arcdisplay.keyPressEvent().connect(self.keyPressEvent)
         # self.connect(
         #     self.arcdisplay,
         #     QtCore.SIGNAL('keyPressEvent'),
         #     self.keyPressEvent)
-        self.connect(
-            self.arcdisplay,
-            QtCore.SIGNAL('updatex(float)'),
-            self.updatexlabel)
-        self.connect(
-            self.funcComboBox,
-            QtCore.SIGNAL('activated(QString)'),
-            self.updatefunction)
-        self.connect(
-            self.methodComboBox,
-            QtCore.SIGNAL('activated(QString)'),
-            self.updatemethod)
+        # self.connect(
+        #     self.arcdisplay,
+        #     QtCore.SIGNAL('updatex(float)'),
+        #     self.updatexlabel)
+        # self.connect(
+        #     self.funcComboBox,
+        #     QtCore.SIGNAL('activated(QString)'),
+        #     self.updatefunction)
+        # self.connect(
+        #     self.methodComboBox,
+        #     QtCore.SIGNAL('activated(QString)'),
+        #     self.updatemethod)
 
     def keyPressEvent(self, event):
         pass
