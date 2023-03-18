@@ -645,10 +645,10 @@ class errWidget(QtWidgets.QWidget):
         mainLayout.addWidget(self.infopanel)
         self.setLayout(mainLayout)
 
-        self.connect(
-            self.arcdisplay,
-            QtCore.SIGNAL('fitUpdate()'),
-            self.fitUpdate)
+        # self.connect(
+        #     self.arcdisplay,
+        #     QtCore.SIGNAL('fitUpdate()'),
+        #     self.fitUpdate)
 
     def fitUpdate(self):
         if len(self.arcdisplay.xp) <= 1:
